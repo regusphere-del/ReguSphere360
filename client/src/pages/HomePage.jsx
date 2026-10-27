@@ -69,28 +69,46 @@ export const HomePage = ({
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-20 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Trust Badge */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold mb-6">
-            <ShieldCheck className="w-4 h-4 text-teal-600" />
-            <span>Independent Pharmaceutical Regulatory Affairs Consultancy</span>
-            <span className="text-teal-400">•</span>
-            <span className="text-slate-600 font-normal">ICH CTD / eCTD v3.2.2 & v4.0</span>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              {/* Trust Badge */}
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold mb-6">
+                <ShieldCheck className="w-4 h-4 text-teal-600" />
+                <span>Independent Pharmaceutical Regulatory Affairs Consultancy</span>
+                <span className="text-teal-400">•</span>
+                <span className="text-slate-600 font-normal">ICH CTD / eCTD v3.2.2 & v4.0</span>
+              </div>
 
-          <div className="max-w-4xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight">
-              Strategic Pharmaceutical{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-700 via-teal-600 to-emerald-600">
-                Regulatory Affairs
-              </span>{' '}
-              Consultancy & Intelligence
-            </h1>
+              <div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.12] tracking-tight">
+                  Strategic Pharmaceutical{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-700 via-teal-600 to-emerald-600">
+                    Regulatory Affairs
+                  </span>{' '}
+                  Consultancy & Intelligence
+                </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl font-normal">
-              Empowering pharmaceutical enterprises, biotech startups, and life science professionals with
-              flawless ICH CTD/eCTD documentation, global regulatory intelligence across India and international
-              markets, and corporate regulatory training.
-            </p>
+                <p className="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed font-normal">
+                  Empowering pharmaceutical enterprises, biotech startups, and life science professionals with
+                  flawless ICH CTD/eCTD documentation, global regulatory intelligence across India and international
+                  markets, and corporate regulatory training.
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 hidden lg:flex justify-center">
+              <div className="p-4 rounded-3xl bg-white border border-slate-200 shadow-xl max-w-[280px]">
+                <img
+                  src="/logo.jpg"
+                  alt="ReguSphere 360 Ecosystem"
+                  className="w-full h-auto rounded-2xl object-contain hover:scale-105 transition-transform duration-300"
+                />
+                <div className="mt-3 text-center">
+                  <span className="text-[11px] font-bold text-slate-800 block">The ReguSphere 360 Ecosystem</span>
+                  <span className="text-[10px] text-teal-700 font-semibold">Pharma • CMC • Quality • Global • Compliance</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Three Prominent Required Calls to Action */}

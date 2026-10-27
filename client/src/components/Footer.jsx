@@ -9,9 +9,11 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
           {/* Brand Info */}
           <div className="space-y-4 md:col-span-2">
             <div className="flex items-center space-x-2.5">
-              <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-white" />
-              </div>
+              <img
+                src="/logo.jpg"
+                alt="ReguSphere 360"
+                className="w-10 h-10 rounded-lg object-contain bg-white p-0.5 border border-slate-700"
+              />
               <span className="text-lg font-bold text-white">
                 Regu<span className="text-teal-400">Sphere</span> 360
               </span>

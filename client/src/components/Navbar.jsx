@@ -65,9 +65,11 @@ export const Navbar = ({
           className="flex items-center space-x-3 cursor-pointer"
           onClick={() => onNavigate('home')}
         >
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-slate-900 via-teal-800 to-teal-600 flex items-center justify-center shadow-md ring-1 ring-teal-500/20">
-            <ShieldCheck className="w-6 h-6 text-white stroke-[2.2]" />
-          </div>
+          <img
+            src="/logo.jpg"
+            alt="ReguSphere 360"
+            className="w-12 h-12 rounded-xl object-contain bg-white border border-slate-200 shadow-sm p-0.5 hover:scale-105 transition-transform"
+          />
           <div>
             <div className="flex items-center space-x-2">
               <span className="text-xl font-extrabold tracking-tight text-slate-900 font-sans">
