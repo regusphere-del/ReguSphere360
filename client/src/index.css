@@ -4,35 +4,41 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500/30 selection:text-emerald-200 min-h-screen overflow-x-hidden;
+    @apply bg-slate-50 text-slate-800 font-sans antialiased selection:bg-teal-500/20 selection:text-teal-900 min-h-screen overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 tracking-tight font-sans;
   }
 }
 
-/* Glassmorphism & Luxury Cards */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Premium Light Executive Cards */
+.executive-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-panel-hover:hover {
-  background: rgba(15, 23, 42, 0.9);
-  border-color: rgba(16, 185, 129, 0.3);
+.executive-card:hover {
+  border-color: #0d9488;
+  box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.08), 0 8px 10px -6px rgba(13, 148, 136, 0.04);
   transform: translateY(-2px);
-  box-shadow: 0 20px 35px -10px rgba(16, 185, 129, 0.08);
 }
 
-.glow-emerald {
-  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.25);
+/* Deep Navy Banner & Accents */
+.navy-gradient {
+  background: linear-gradient(135deg, #0a192f 0%, #0f172a 50%, #1e293b 100%);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.25);
+.teal-gradient {
+  background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+}
+
+.subtle-teal-badge {
+  background: #f0fdfa;
+  border: 1px solid #ccfbf1;
+  color: #0f766e;
 }
 
 /* Custom Scrollbars */
@@ -42,14 +48,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }

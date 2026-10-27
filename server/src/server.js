@@ -7,6 +7,9 @@ import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import enquiryRoutes from './routes/enquiryRoutes.js';
 import assessmentRoutes from './routes/assessmentRoutes.js';
+import intelligenceRoutes from './routes/intelligenceRoutes.js';
+import courseRoutes from './routes/courseRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 dotenv.config();
 
@@ -37,16 +40,13 @@ app.use('/uploads', express.static(path.resolve(process.cwd(), 'uploads')));
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
-    platform: 'ReguSphere 360 Pharma Regulatory API',
-    version: '1.0.0',
+    platform: 'ReguSphere 360 Pharma Regulatory Affairs Platform',
+    version: '2.0.0',
     timestamp: new Date().toISOString(),
-    services: [
-      'ICH CTD/eCTD Dossier Structure & Indexing',
-      'Regulatory Document Gap Assessments',
-      'SOP Preparation & Document Control Support',
-      'Regulatory Submission Readiness Checklists',
-      'Regulatory Writing & Documentation Consistency Reviews',
-      'Post-Approval Change Documentation Support',
+    coreServices: [
+      '1. Regulatory Documentation Consultancy (ICH CTD/eCTD, Gap Audits, SOP Control)',
+      '2. Global Regulatory Intelligence (CDSCO, FDA, EMA, MHRA, PMDA, ASEAN)',
+      '3. Regulatory Education & Corporate Training (Masterclasses, GxP Workshops, Quizzes)',
     ],
   });
 });
@@ -54,6 +54,9 @@ app.get('/api/health', (req, res) => {
 // API Routes
 app.use('/api/enquiries', enquiryRoutes);
 app.use('/api/assessments', assessmentRoutes);
+app.use('/api/intelligence', intelligenceRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {

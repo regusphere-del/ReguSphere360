@@ -1,35 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { ServiceCards } from './components/ServiceCards';
-import { DeliverablesSection } from './components/DeliverablesSection';
+import { Footer } from './components/Footer';
+import { HomePage } from './pages/HomePage';
+import { RegulatoryDocumentationPage } from './pages/RegulatoryDocumentationPage';
+import { GlobalIntelligencePage } from './pages/GlobalIntelligencePage';
+import { EducationTrainingPage } from './pages/EducationTrainingPage';
+import { ProcessPage } from './pages/ProcessPage';
+import { AboutPage } from './pages/AboutPage';
+import { ExpertisePage } from './pages/ExpertisePage';
+import { ResourcesPage } from './pages/ResourcesPage';
+import { FaqPage } from './pages/FaqPage';
+import { ContactPage } from './pages/ContactPage';
+import { LegalPages } from './pages/LegalPages';
+import { AdminDashboard } from './pages/AdminDashboard';
 import { ReadinessChecklistTool } from './components/ReadinessChecklistTool';
 import { EnquiryModal } from './components/EnquiryModal';
 import { ProjectTracker } from './components/ProjectTracker';
-import { Footer } from './components/Footer';
-import { FileCheck2, Search, Sparkles, ShieldCheck } from 'lucide-react';
 
-function ConsultancyPlatform() {
+function ConsultancyApp() {
+  const [activePage, setActivePage] = useState('home');
+
+  // Modals state
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
-  const [auditContext, setAuditContext] = useState(null);
+  const [enquiryService, setEnquiryService] = useState(null);
+  const [enquiryAuditContext, setEnquiryAuditContext] = useState(null);
 
   const [isTrackerOpen, setIsTrackerOpen] = useState(false);
   const [activeTrackingId, setActiveTrackingId] = useState(null);
 
   const [isReadinessOpen, setIsReadinessOpen] = useState(false);
 
-  const handleOpenEnquiryWithService = (serviceTitle) => {
-    setSelectedService(serviceTitle);
-    setAuditContext(null);
+  // Scroll to top on page navigation
+  const handleNavigate = (pageKey) => {
+    setActivePage(pageKey);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenEnquiry = (initialService = null) => {
+    setEnquiryService(initialService);
+    setEnquiryAuditContext(null);
     setIsEnquiryOpen(true);
   };
 
   const handleProceedFromReadiness = (auditData) => {
     setIsReadinessOpen(false);
-    setSelectedService('Regulatory document gap assessments');
-    setAuditContext(auditData);
+    setEnquiryService('Regulatory document gap assessments');
+    setEnquiryAuditContext(auditData);
     setIsEnquiryOpen(true);
   };
 
@@ -40,94 +57,73 @@ function ConsultancyPlatform() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500/30 selection:text-emerald-200">
-      {/* Top System Notice for Regulatory Standards */}
-      <div className="bg-gradient-to-r from-emerald-950/80 via-slate-900 to-teal-950/80 border-b border-emerald-900/30 text-[11px] text-slate-300 py-1.5 px-4 text-center">
-        <span className="text-emerald-400 font-bold mr-1.5">● REGULATORY ADVISORY:</span>
-        ICH eCTD v4.0 Implementation window active. Submissions for US FDA, EMA, Health Canada, and PMDA accepted with full validation pass.
+    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans selection:bg-teal-500/20 selection:text-teal-900">
+      {/* Top Advisory Bar */}
+      <div className="bg-slate-900 text-[11px] text-slate-300 py-1.5 px-4 text-center border-b border-slate-800 flex items-center justify-center space-x-2">
+        <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+        <span className="font-bold text-white uppercase tracking-wider">Regulatory Operations Notice:</span>
+        <span className="text-slate-400">
+          ICH eCTD v4.0 Implementation & CDSCO Revised Schedule M (cGMP) transition audits in progress.
+        </span>
       </div>
 
       {/* Navigation */}
       <Navbar
-        onOpenEnquiry={() => {
-          setSelectedService(null);
-          setAuditContext(null);
-          setIsEnquiryOpen(true);
-        }}
+        activePage={activePage}
+        onNavigate={handleNavigate}
+        onOpenEnquiry={handleOpenEnquiry}
         onOpenTracker={() => setIsTrackerOpen(true)}
         onOpenReadiness={() => setIsReadinessOpen(true)}
       />
 
-      {/* Main Content */}
+      {/* Dynamic Main Body Content */}
       <main className="flex-1">
-        <HeroSection
-          onOpenEnquiry={() => {
-            setSelectedService(null);
-            setAuditContext(null);
-            setIsEnquiryOpen(true);
-          }}
-          onOpenReadiness={() => setIsReadinessOpen(true)}
-          onOpenTracker={() => setIsTrackerOpen(true)}
-        />
+        {activePage === 'home' && (
+          <HomePage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+            onOpenTracker={() => setIsTrackerOpen(true)}
+            onOpenReadiness={() => setIsReadinessOpen(true)}
+          />
+        )}
 
-        <ServiceCards
-          onSelectService={handleOpenEnquiryWithService}
-          onOpenReadiness={() => setIsReadinessOpen(true)}
-        />
+        {activePage === 'documentation' && (
+          <RegulatoryDocumentationPage
+            onSelectService={handleOpenEnquiry}
+            onOpenReadiness={() => setIsReadinessOpen(true)}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
 
-        <DeliverablesSection
-          onOpenEnquiry={() => {
-            setSelectedService('ICH CTD/eCTD dossier structure and document indexing');
-            setAuditContext(null);
-            setIsEnquiryOpen(true);
-          }}
-        />
+        {activePage === 'intelligence' && (
+          <GlobalIntelligencePage onOpenEnquiry={handleOpenEnquiry} />
+        )}
 
-        {/* Call to Action Banner */}
-        <section className="py-16 bg-gradient-to-b from-slate-900 to-slate-950 border-t border-slate-800 relative overflow-hidden">
-          <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Ready for Submission Excellence</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-              Eliminate Submission Delays & Health Authority Queries
-            </h2>
-            <p className="text-sm text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Whether you are assembling your first Investigational New Drug (IND) filing or maintaining complex
-              commercial variations, ReguSphere 360 gives you senior RAC expertise on demand.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <button
-                onClick={() => {
-                  setSelectedService(null);
-                  setAuditContext(null);
-                  setIsEnquiryOpen(true);
-                }}
-                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-bold text-xs hover:from-emerald-400 transition-all shadow-xl shadow-emerald-500/20 active:scale-95 flex items-center space-x-2"
-              >
-                <FileCheck2 className="w-4 h-4" />
-                <span>Request Quotation & Scoping</span>
-              </button>
-              <button
-                onClick={() => setIsReadinessOpen(true)}
-                className="px-6 py-3.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500 text-slate-200 hover:text-white font-semibold text-xs transition-all flex items-center space-x-2"
-              >
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span>Run Interactive Readiness Audit</span>
-              </button>
-            </div>
-          </div>
-        </section>
+        {activePage === 'education' && (
+          <EducationTrainingPage onOpenEnquiry={handleOpenEnquiry} />
+        )}
+
+        {activePage === 'process' && <ProcessPage onOpenEnquiry={handleOpenEnquiry} />}
+
+        {activePage === 'about' && <AboutPage onOpenEnquiry={handleOpenEnquiry} />}
+
+        {activePage === 'expertise' && <ExpertisePage onOpenEnquiry={handleOpenEnquiry} />}
+
+        {activePage === 'resources' && <ResourcesPage onOpenEnquiry={handleOpenEnquiry} />}
+
+        {activePage === 'faq' && <FaqPage onOpenEnquiry={handleOpenEnquiry} />}
+
+        {activePage === 'contact' && <ContactPage />}
+
+        {activePage === 'legal' && <LegalPages />}
+
+        {activePage === 'admin' && <AdminDashboard />}
       </main>
 
       {/* Footer */}
       <Footer
-        onOpenEnquiry={() => {
-          setSelectedService(null);
-          setAuditContext(null);
-          setIsEnquiryOpen(true);
-        }}
+        onNavigate={handleNavigate}
+        onOpenEnquiry={handleOpenEnquiry}
         onOpenReadiness={() => setIsReadinessOpen(true)}
         onOpenTracker={() => setIsTrackerOpen(true)}
       />
@@ -135,8 +131,8 @@ function ConsultancyPlatform() {
       {/* Modals & Tools */}
       {isEnquiryOpen && (
         <EnquiryModal
-          initialService={selectedService}
-          auditContext={auditContext}
+          initialService={enquiryService}
+          auditContext={enquiryAuditContext}
           onClose={() => setIsEnquiryOpen(false)}
           onSuccess={handleEnquirySuccess}
         />
@@ -166,7 +162,7 @@ function ConsultancyPlatform() {
 export default function App() {
   return (
     <AuthProvider>
-      <ConsultancyPlatform />
+      <ConsultancyApp />
     </AuthProvider>
   );
 }
