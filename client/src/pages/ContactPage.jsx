@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, Building2 } from 'lucide-react';
+import { Mail, Send, CheckCircle2, ShieldCheck, Globe, Clock, MessageSquare } from 'lucide-react';
 import axios from 'axios';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -41,7 +41,7 @@ export const ContactPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold mb-4">
             <Mail className="w-3.5 h-3.5 text-teal-600" />
-            <span>Consultancy Office Contacts</span>
+            <span>Consultancy Enquiry Portal</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             Connect with ReguSphere 360
@@ -56,33 +56,33 @@ export const ContactPage = () => {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Contact Information & Offices */}
+            {/* Contact Information & Channels */}
             <div className="lg:col-span-5 space-y-6">
               <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-4">
-                <h3 className="text-lg font-bold text-slate-900">Global Advisory Centers</h3>
+                <h3 className="text-lg font-bold text-slate-900">Global Regulatory Advisory</h3>
 
-                <div className="space-y-4 text-xs text-slate-600">
+                <div className="space-y-3.5 text-xs text-slate-600">
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" />
+                    <Globe className="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" />
                     <div>
-                      <strong className="text-slate-900 block text-xs">United States (Americas Practice)</strong>
-                      <span>400 Technology Square, Suite 800, Cambridge/Boston MA 02139</span>
+                      <strong className="text-slate-900 block text-xs">Cross-Jurisdictional Practice</strong>
+                      <span>Providing technical regulatory strategy and documentation across US, EU, UK, India, Japan, and ASEAN markets.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" />
+                    <Clock className="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" />
                     <div>
-                      <strong className="text-slate-900 block text-xs">Europe (EU/UK Practice)</strong>
-                      <span>Aeschenvorstadt 48, 4051 Basel, Switzerland</span>
+                      <strong className="text-slate-900 block text-xs">Response & Turnaround Commitment</strong>
+                      <span>All initial briefs reviewed by Senior RAC consultants within 24 to 48 business hours.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" />
+                    <MessageSquare className="w-4 h-4 text-teal-600 mt-1 flex-shrink-0" />
                     <div>
-                      <strong className="text-slate-900 block text-xs">India & Asia-Pacific Practice</strong>
-                      <span>Bandra-Kurla Complex (BKC), G-Block, Mumbai, Maharashtra 400051</span>
+                      <strong className="text-slate-900 block text-xs">Virtual Briefings & Conferences</strong>
+                      <span>Secure video conference meetings scheduled for confidential technical scoping and gap review.</span>
                     </div>
                   </div>
                 </div>

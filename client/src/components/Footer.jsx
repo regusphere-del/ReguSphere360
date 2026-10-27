@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Mail, Phone, MapPin, Globe, CheckCircle2, Lock } from 'lucide-react';
+import { ShieldCheck, Mail, Globe, CheckCircle2, Lock } from 'lucide-react';
 
 export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTracker }) => {
   return (
@@ -111,15 +111,11 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
 
           {/* Contact & Governance */}
           <div>
-            <h4 className="text-xs uppercase tracking-wider font-bold text-white mb-4">Connect & Offices</h4>
+            <h4 className="text-xs uppercase tracking-wider font-bold text-white mb-4">Connect With Us</h4>
             <div className="space-y-2 text-xs">
               <p className="flex items-center space-x-2 text-slate-300">
                 <Mail className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
                 <span>regulatory@regusphere360.com</span>
-              </p>
-              <p className="flex items-start space-x-2 text-slate-400">
-                <MapPin className="w-3.5 h-3.5 text-teal-400 flex-shrink-0 mt-0.5" />
-                <span>Boston, MA • Basel, Switzerland • Mumbai, India</span>
               </p>
             </div>
 
