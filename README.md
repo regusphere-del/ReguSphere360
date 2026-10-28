@@ -4,12 +4,14 @@ ReguSphere 360 is an enterprise-grade web platform for pharmaceutical companies,
 
 ---
 
-> ### 🌐 Live Monitoring & Development Links
-> - **Local Development:** [http://localhost:5173/](http://localhost:5173/)
-> - **Temporary Public Preview / Remote Monitor:** [https://swift-cloths-tan.loca.lt](https://swift-cloths-tan.loca.lt) *(Tunnel Password / IP if prompted: `103.148.39.76`)*
-> - **Backend API Health:** [http://localhost:5000/api/health](http://localhost:5000/api/health)
+> ### 📱 Live Mobile & Remote Monitoring Links
+> - **Direct Public Preview (Mobile & Remote - Instant, No Password):**  
+>   👉 **[https://preventing-volvo-apnic-shakespeare.trycloudflare.com](https://preventing-volvo-apnic-shakespeare.trycloudflare.com)**
+> - **Local Wi-Fi Network (Phone on same Wi-Fi):** [http://192.168.1.73:5173/](http://192.168.1.73:5173/)
+> - **Localhost (PC only):** [http://localhost:5173/](http://localhost:5173/)
+> - **Backend API Health Check:** [http://localhost:5000/api/health](http://localhost:5000/api/health)
 >
-> *(Continuously updated with local workspace changes)*
+> *(Continuously synced with local workspace edits in real-time)*
 
 ---
 
