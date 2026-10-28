@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   HelpCircle,
   FileText,
-  DollarSign,
   Download,
   Users,
   Building2,
@@ -17,7 +16,6 @@ import {
   ArrowRight,
   Sparkles,
   ShieldCheck,
-  CreditCard,
   AlertCircle,
   PlayCircle,
 } from 'lucide-react';
@@ -40,10 +38,10 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
   const [registeringCourse, setRegisteringCourse] = useState(null);
   const [regName, setRegName] = useState('');
   const [regEmail, setRegEmail] = useState('');
+  const [regPhone, setRegPhone] = useState('');
   const [regCompany, setRegCompany] = useState('');
   const [regAttendeeType, setRegAttendeeType] = useState('Working Professional');
   const [regAttendeeCount, setRegAttendeeCount] = useState(1);
-  const [regPaymentMethod, setRegPaymentMethod] = useState('Test Card (Stripe Simulator)');
   const [isRegistering, setIsRegistering] = useState(false);
   const [regSuccess, setRegSuccess] = useState(null);
 
@@ -108,10 +106,10 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
         courseId: registeringCourse.id,
         attendeeName: regName,
         email: regEmail,
+        phone: regPhone,
         companyOrInstitute: regCompany,
         attendeeType: regAttendeeType,
         attendeeCount: regAttendeeCount,
-        paymentMethod: regPaymentMethod,
       });
 
       if (res.data.success) {
@@ -237,8 +235,8 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                       <span className="text-[10px] uppercase font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
                         {course.badge}
                       </span>
-                      <span className="text-xs font-mono font-bold text-slate-900">
-                        ${course.priceUsd} USD
+                      <span className="text-xs text-slate-500 font-medium">
+                        {course.level}
                       </span>
                     </div>
 
@@ -279,12 +277,12 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                       <strong className="text-slate-900">{selectedCourse.format}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block">Next Cohort:</span>
-                      <strong className="text-slate-900">{selectedCourse.nextCohort}</strong>
+                      <span className="text-slate-400 block">Duration:</span>
+                      <strong className="text-slate-900">{selectedCourse.duration}</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block">Tuition Fee:</span>
-                      <strong className="text-slate-900">${selectedCourse.priceUsd} USD / ₹{selectedCourse.priceInr?.toLocaleString()}</strong>
+                      <span className="text-slate-400 block">Next Cohort:</span>
+                      <strong className="text-slate-900">{selectedCourse.nextCohort}</strong>
                     </div>
                   </div>
 
@@ -335,8 +333,8 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                       onClick={() => setRegisteringCourse(selectedCourse)}
                       className="w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition-colors shadow-md flex items-center justify-center space-x-2"
                     >
-                      <CreditCard className="w-4 h-4" />
-                      <span>Enroll & Register for Masterclass</span>
+                      <GraduationCap className="w-4 h-4" />
+                      <span>Register for Masterclass</span>
                     </button>
                   </div>
                 </div>
@@ -517,7 +515,7 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
         </section>
       )}
 
-      {/* REGISTRATION & PAYMENT SIMULATION MODAL */}
+      {/* REGISTRATION MODAL */}
       {registeringCourse && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm overflow-y-auto">
           <div className="bg-white w-full max-w-xl rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-2xl relative my-8">
@@ -564,16 +562,15 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                     Course Registration
                   </span>
                   <h3 className="text-lg font-bold text-slate-900 mt-1">{registeringCourse.title}</h3>
-                  <p className="text-xs text-slate-500 font-mono mt-0.5">
-                    Cohort Date: {registeringCourse.nextCohort} • Tuition: ${registeringCourse.priceUsd} USD
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">
+                    Cohort Date: <strong className="text-slate-700">{registeringCourse.nextCohort}</strong> • Format: <strong className="text-slate-700">{registeringCourse.format}</strong>
                   </p>
                 </div>
 
-                {/* Payment Gateway Configuration Notice */}
-                <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 mb-4 flex items-start space-x-2">
-                  <AlertCircle className="w-4 h-4 text-blue-700 flex-shrink-0 mt-0.5" />
+                <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900 mb-4 flex items-start space-x-2">
+                  <Sparkles className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
                   <div>
-                    <strong>Payment Processing Notice:</strong> Live credit card/UPI processing connects through configured Stripe/Razorpay accounts. Currently running in verified Sandbox/Simulation Mode.
+                    <strong>Masterclass Enrollment:</strong> Enter your details below to reserve your cohort seat. Onboarding syllabus and live virtual access links will be delivered directly to your email.
                   </div>
                 </div>
 
@@ -603,6 +600,19 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                       />
                     </div>
                     <div>
+                      <label className="block text-slate-600 font-semibold mb-1">Contact Phone / WhatsApp</label>
+                      <input
+                        type="tel"
+                        value={regPhone}
+                        onChange={(e) => setRegPhone(e.target.value)}
+                        placeholder="e.g. +91 98765 43210"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:border-amber-600"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
                       <label className="block text-slate-600 font-semibold mb-1">Company / University</label>
                       <input
                         type="text"
@@ -612,9 +622,7 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                         className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:border-amber-600"
                       />
                     </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-slate-600 font-semibold mb-1">Profile Category</label>
                       <select
@@ -628,19 +636,6 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                         <option value="Corporate Group Sponsor">Corporate Team Sponsor</option>
                       </select>
                     </div>
-
-                    <div>
-                      <label className="block text-slate-600 font-semibold mb-1">Payment Mode (Simulated)</label>
-                      <select
-                        value={regPaymentMethod}
-                        onChange={(e) => setRegPaymentMethod(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:border-amber-600"
-                      >
-                        <option value="Test Card (Stripe Simulator)">Test Credit Card (Stripe Sandbox)</option>
-                        <option value="UPI / Net Banking (Razorpay Simulator)">UPI / NetBanking (Razorpay Sandbox)</option>
-                        <option value="Company Purchase Order (Invoice)">Company Invoice / Purchase Order</option>
-                      </select>
-                    </div>
                   </div>
 
                   {/* Disclaimer check */}
@@ -650,16 +645,13 @@ export const EducationTrainingPage = ({ onOpenEnquiry }) => {
                     </p>
                   </div>
 
-                  <div className="pt-2 flex justify-between items-center">
-                    <span className="font-bold text-slate-900 text-sm">
-                      Total: ${registeringCourse.priceUsd} USD
-                    </span>
+                  <div className="pt-2 flex justify-end items-center">
                     <button
                       type="submit"
                       disabled={isRegistering}
-                      className="px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-sm transition-colors"
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-sm transition-colors"
                     >
-                      {isRegistering ? 'Processing Enrollment...' : 'Confirm Registration'}
+                      {isRegistering ? 'Processing Registration...' : 'Complete Masterclass Registration'}
                     </button>
                   </div>
                 </form>

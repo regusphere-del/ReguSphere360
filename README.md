@@ -4,6 +4,15 @@ ReguSphere 360 is an enterprise-grade web platform for pharmaceutical companies,
 
 ---
 
+> ### 🌐 Live Monitoring & Development Links
+> - **Local Development:** [http://localhost:5173/](http://localhost:5173/)
+> - **Temporary Public Preview / Remote Monitor:** [https://swift-cloths-tan.loca.lt](https://swift-cloths-tan.loca.lt) *(Tunnel Password / IP if prompted: `103.148.39.76`)*
+> - **Backend API Health:** [http://localhost:5000/api/health](http://localhost:5000/api/health)
+>
+> *(Continuously updated with local workspace changes)*
+
+---
+
 ## 🏛️ Core Service 1: Regulatory Documentation Consultancy
 
 Helping pharma enterprises, biotechs, and CROs organize, write, audit, and submit dossiers to global health authorities (**US FDA, EMA, Health Canada, CDSCO, TGA, MHRA, PMDA**).

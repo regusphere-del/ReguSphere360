@@ -333,8 +333,8 @@ export const AdminDashboard = () => {
                   <th className="py-3.5 px-4">Course Masterclass</th>
                   <th className="py-3.5 px-4">Attendee Name & Email</th>
                   <th className="py-3.5 px-4">Company / University</th>
-                  <th className="py-3.5 px-4">Tuition Fee</th>
-                  <th className="py-3.5 px-4">Payment Status</th>
+                  <th className="py-3.5 px-4">Category</th>
+                  <th className="py-3.5 px-4">Enrollment Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -356,12 +356,12 @@ export const AdminDashboard = () => {
                         <span className="text-[11px] text-slate-500">{reg.email}</span>
                       </td>
                       <td className="py-3.5 px-4 text-slate-600">{reg.companyOrInstitute}</td>
-                      <td className="py-3.5 px-4 font-mono font-bold text-slate-900">
-                        ${reg.totalAmountUsd} USD
+                      <td className="py-3.5 px-4 text-slate-700 font-medium">
+                        {reg.attendeeType || 'Working Professional'}
                       </td>
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-300">
-                          {reg.paymentStatus}
+                          {reg.paymentStatus && !reg.paymentStatus.includes('Test') && !reg.paymentStatus.includes('Simulated') ? reg.paymentStatus : 'Confirmed / Active'}
                         </span>
                       </td>
                     </tr>
