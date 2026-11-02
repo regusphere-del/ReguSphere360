@@ -6,6 +6,7 @@
   "scripts": {
     "client": "npm --prefix client run dev",
     "client:build": "npm --prefix client run build",
+    "build": "npm --prefix client run build",
     "server": "npm --prefix server run dev",
     "start": "npm --prefix server start",
     "dev": "node -e \"const { spawn } = require('child_process'); const isWin = process.platform === 'win32'; const cmd = isWin ? 'npm.cmd' : 'npm'; const s = spawn(cmd, ['run', 'dev'], { cwd: './server', stdio: 'inherit' }); const c = spawn(cmd, ['run', 'dev'], { cwd: './client', stdio: 'inherit' }); process.on('SIGINT', () => { s.kill(); c.kill(); process.exit(); });\""

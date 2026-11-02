@@ -10,6 +10,7 @@ import assessmentRoutes from './routes/assessmentRoutes.js';
 import intelligenceRoutes from './routes/intelligenceRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import licenseRoutes from './routes/licenseRoutes.js';
 
 dotenv.config();
 
@@ -44,9 +45,12 @@ app.get('/api/health', (req, res) => {
     version: '2.0.0',
     timestamp: new Date().toISOString(),
     coreServices: [
-      '1. Regulatory Documentation Consultancy (ICH CTD/eCTD, Gap Audits, SOP Control)',
-      '2. Global Regulatory Intelligence (CDSCO, FDA, EMA, MHRA, PMDA, ASEAN)',
-      '3. Regulatory Education & Corporate Training (Masterclasses, GxP Workshops, Quizzes)',
+      '1. eCTD & Regulatory Submission Consultancy',
+      '2. Pharmaceutical License Tracking & Regulatory Follow-up',
+      '3. Regulatory Documentation Consultancy',
+      '4. Global Regulatory Intelligence & Guidance',
+      '5. Pharmaceutical Licensing & Approval Guidance',
+      '6. Regulatory Education & Corporate Training',
     ],
   });
 });
@@ -57,6 +61,7 @@ app.use('/api/assessments', assessmentRoutes);
 app.use('/api/intelligence', intelligenceRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/licenses', licenseRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Mail, Globe, CheckCircle2, Lock } from 'lucide-react';
+import { ShieldCheck, Mail, Globe, CheckCircle2, Lock, User, FileText, ArrowRight } from 'lucide-react';
 
 export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTracker }) => {
   return (
@@ -8,7 +8,10 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
           {/* Brand Info */}
           <div className="space-y-4 md:col-span-2">
-            <div className="flex items-center space-x-2.5">
+            <div
+              className="flex items-center space-x-2.5 cursor-pointer"
+              onClick={() => onNavigate('home')}
+            >
               <img
                 src="/logo.jpg"
                 alt="ReguSphere 360"
@@ -19,27 +22,43 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
               </span>
             </div>
             <p className="text-slate-400 leading-relaxed text-xs max-w-sm">
-              Independent pharmaceutical regulatory affairs consultancy providing specialized eCTD dossier assembly,
-              global regulatory intelligence across India and international markets, and corporate education.
+              Pharmaceutical regulatory affairs knowledge, education, and consultancy platform supporting pharmacy
+              students, professionals, manufacturers, and startups across global health authorities.
             </p>
             <div className="flex items-center space-x-2 text-teal-400 text-[11px] font-semibold">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>ICH M4, GxP & 21 CFR Part 11 Compliant Frameworks</span>
+              <span>Regulatory Knowledge • Professional Guidance • Compliance Excellence</span>
             </div>
           </div>
 
-          {/* Core Services */}
+          {/* Core Services: 6 Verticals */}
           <div>
             <h4 className="text-xs uppercase tracking-wider font-bold text-white mb-4">
               Consultancy Practices
             </h4>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-2 text-xs">
+              <li>
+                <button
+                  onClick={() => onNavigate('services-ectd')}
+                  className="hover:text-teal-400 text-left transition-colors"
+                >
+                  A. eCTD & Regulatory Submission
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('services-license-tracking')}
+                  className="hover:text-teal-400 text-left transition-colors"
+                >
+                  B. Pharmaceutical License Tracking
+                </button>
+              </li>
               <li>
                 <button
                   onClick={() => onNavigate('documentation')}
                   className="hover:text-teal-400 text-left transition-colors"
                 >
-                  1. Regulatory Documentation
+                  C. Regulatory Documentation
                 </button>
               </li>
               <li>
@@ -47,7 +66,15 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                   onClick={() => onNavigate('intelligence')}
                   className="hover:text-teal-400 text-left transition-colors"
                 >
-                  2. Global Regulatory Intelligence
+                  D. Global Regulatory Intelligence
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('services-licensing-guidance')}
+                  className="hover:text-teal-400 text-left transition-colors"
+                >
+                  E. Pharmaceutical Licensing Guidance
                 </button>
               </li>
               <li>
@@ -55,35 +82,46 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                   onClick={() => onNavigate('education')}
                   className="hover:text-teal-400 text-left transition-colors"
                 >
-                  3. Education & Corporate Training
+                  F. Regulatory Education & Training
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('process')}
-                  className="hover:text-teal-400 text-left transition-colors"
+                  onClick={() => onNavigate('consultancy-services')}
+                  className="text-teal-400 font-bold hover:underline text-left"
                 >
-                  6-Step Engagement Process
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('expertise')}
-                  className="hover:text-teal-400 text-left transition-colors"
-                >
-                  Therapeutic & Dossier Domains
+                  View All Services Hub →
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Quick Portals */}
+          {/* Tools & Dashboards */}
           <div>
-            <h4 className="text-xs uppercase tracking-wider font-bold text-white mb-4">Tools & Portals</h4>
-            <ul className="space-y-2.5 text-xs">
+            <h4 className="text-xs uppercase tracking-wider font-bold text-white mb-4">Portals & Tools</h4>
+            <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => onOpenEnquiry(null)} className="hover:text-teal-400 text-left transition-colors">
+                <button
+                  onClick={() => onNavigate('consultation-request')}
+                  className="hover:text-teal-400 text-left transition-colors font-bold text-white"
+                >
                   Request a Consultation
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('client-dashboard')}
+                  className="hover:text-teal-400 text-left transition-colors text-teal-300 font-medium"
+                >
+                  Client Portal Dashboard
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('services-license-tracking')}
+                  className="hover:text-teal-400 text-left transition-colors"
+                >
+                  License Tracking Dashboard
                 </button>
               </li>
               <li>
@@ -92,8 +130,8 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                 </button>
               </li>
               <li>
-                <button onClick={onOpenTracker} className="hover:text-teal-400 text-left transition-colors">
-                  Live Project Tracking Portal
+                <button onClick={() => onNavigate('process')} className="hover:text-teal-400 text-left transition-colors">
+                  6-Step Consultancy Process
                 </button>
               </li>
               <li>
@@ -102,8 +140,8 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('faq')} className="hover:text-teal-400 text-left transition-colors">
-                  Consultancy & Scope FAQs
+                <button onClick={() => onNavigate('admin')} className="hover:text-teal-400 text-left transition-colors text-slate-500">
+                  Admin Operations Portal
                 </button>
               </li>
             </ul>
@@ -116,6 +154,9 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
               <p className="flex items-center space-x-2 text-slate-300">
                 <Mail className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
                 <span>regulatory@regusphere360.com</span>
+              </p>
+              <p className="text-[11px] text-slate-400">
+                Advisory response turnaround within 24–48 hours for registered pharmaceutical enquiries.
               </p>
             </div>
 
@@ -148,44 +189,37 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                 </a>
               </div>
             </div>
-
-            <div className="mt-4 pt-3 border-t border-slate-800">
-              <button
-                onClick={() => onNavigate('admin')}
-                className="text-[11px] text-slate-400 hover:text-white flex items-center space-x-1"
-              >
-                <Lock className="w-3 h-3 text-slate-500" />
-                <span>Admin Operations Portal</span>
-              </button>
-            </div>
           </div>
         </div>
 
-        {/* Regulatory Authority Non-Affiliation Disclaimer Banner */}
-        <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-400 leading-relaxed mb-8">
-          <p>
-            <strong className="text-slate-300">Statutory Health Authority Disclaimer:</strong> ReguSphere 360 Inc. is an
-            independent technical advisory consultancy and is not an agency, branch, or affiliate of the US Food and Drug
-            Administration (FDA), European Medicines Agency (EMA), Central Drugs Standard Control Organisation (CDSCO),
-            or any statutory health authority. All final regulatory decisions, marketing authorizations, and approvals belong
-            exclusively to the respective sovereign authorities. Course completion certificates document practical
-            instruction and do not constitute accredited academic degrees or government regulatory licenses.
-          </p>
-        </div>
+        {/* Regulatory Governance Statement & Mandatory Disclaimer */}
+        <div className="border-t border-slate-800 pt-8 pb-4 text-[11px] leading-relaxed text-slate-400 space-y-3">
+          <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700/80 text-slate-300">
+            <span className="text-teal-400 font-bold block mb-1 flex items-center space-x-1.5">
+              <ShieldCheck className="w-4 h-4 text-teal-400" />
+              <span>Statutory Regulatory Disclaimer</span>
+            </span>
+            "ReguSphere 360 provides pharmaceutical regulatory education, consultancy, documentation guidance,
+            and application tracking assistance. Regulatory approvals, licensing decisions, and statutory permissions
+            are issued exclusively by the competent regulatory authorities. We do not guarantee regulatory approvals
+            or represent ourselves as a government authority."
+          </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-3">
-          <p>© {new Date().getFullYear()} ReguSphere 360 Inc. All Rights Reserved. Pharmaceutical Regulatory Affairs.</p>
-          <div className="flex flex-wrap gap-4">
-            <button onClick={() => onNavigate('legal')} className="hover:text-slate-300">
-              Privacy Policy
-            </button>
-            <button onClick={() => onNavigate('legal')} className="hover:text-slate-300">
-              Terms of Service
-            </button>
-            <button onClick={() => onNavigate('legal')} className="hover:text-slate-300">
-              Disclaimers & Confidentiality
-            </button>
+          <div className="flex flex-col sm:flex-row items-center justify-between text-slate-400 pt-2 gap-2">
+            <p>© {new Date().getFullYear()} ReguSphere 360. All rights reserved. Professional Pharmaceutical Regulatory Consultancy.</p>
+            <div className="flex items-center space-x-4">
+              <button onClick={() => onNavigate('legal')} className="hover:text-teal-400">
+                Privacy Policy & NDA
+              </button>
+              <span>•</span>
+              <button onClick={() => onNavigate('legal')} className="hover:text-teal-400">
+                Terms of Service
+              </button>
+              <span>•</span>
+              <button onClick={() => onNavigate('contact')} className="hover:text-teal-400">
+                Contact Regulatory Office
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -3,9 +3,15 @@ import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
+import { ConsultancyServicesPage } from './pages/ConsultancyServicesPage';
+import { EctdConsultancyPage } from './pages/EctdConsultancyPage';
+import { LicenseTrackingPage } from './pages/LicenseTrackingPage';
 import { RegulatoryDocumentationPage } from './pages/RegulatoryDocumentationPage';
 import { GlobalIntelligencePage } from './pages/GlobalIntelligencePage';
+import { LicensingGuidancePage } from './pages/LicensingGuidancePage';
 import { EducationTrainingPage } from './pages/EducationTrainingPage';
+import { ConsultationRequestPage } from './pages/ConsultationRequestPage';
+import { ClientDashboard } from './pages/ClientDashboard';
 import { ProcessPage } from './pages/ProcessPage';
 import { AboutPage } from './pages/AboutPage';
 import { ExpertisePage } from './pages/ExpertisePage';
@@ -78,6 +84,7 @@ function ConsultancyApp() {
 
       {/* Dynamic Main Body Content */}
       <main className="flex-1">
+        {/* 1. Consultancy Home */}
         {activePage === 'home' && (
           <HomePage
             onNavigate={handleNavigate}
@@ -87,6 +94,32 @@ function ConsultancyApp() {
           />
         )}
 
+        {/* 2. Our Consultancy Services Hub */}
+        {activePage === 'consultancy-services' && (
+          <ConsultancyServicesPage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+
+        {/* 3. Service A: eCTD & Regulatory Submission Consultancy */}
+        {activePage === 'services-ectd' && (
+          <EctdConsultancyPage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+
+        {/* 4. Service B: Pharmaceutical License Tracking */}
+        {activePage === 'services-license-tracking' && (
+          <LicenseTrackingPage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+            initialTrackingId={activeTrackingId}
+          />
+        )}
+
+        {/* 5. Service C: Regulatory Documentation Consultancy */}
         {activePage === 'documentation' && (
           <RegulatoryDocumentationPage
             onSelectService={handleOpenEnquiry}
@@ -95,28 +128,48 @@ function ConsultancyApp() {
           />
         )}
 
+        {/* 6. Service D: Global Regulatory Intelligence */}
         {activePage === 'intelligence' && (
           <GlobalIntelligencePage onOpenEnquiry={handleOpenEnquiry} />
         )}
 
+        {/* 7. Service E: Pharmaceutical Licensing Guidance */}
+        {activePage === 'services-licensing-guidance' && (
+          <LicensingGuidancePage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+
+        {/* 8. Service F: Regulatory Education & Training */}
         {activePage === 'education' && (
           <EducationTrainingPage onOpenEnquiry={handleOpenEnquiry} />
         )}
 
+        {/* 9. Request a Consultation Page */}
+        {activePage === 'consultation-request' && (
+          <ConsultationRequestPage
+            onNavigate={handleNavigate}
+            preselectedService={enquiryService}
+          />
+        )}
+
+        {/* 10. Client Portal Dashboard */}
+        {activePage === 'client-dashboard' && (
+          <ClientDashboard
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+
+        {/* Additional Existing Pages (Retained 100% Intact) */}
         {activePage === 'process' && <ProcessPage onOpenEnquiry={handleOpenEnquiry} />}
-
         {activePage === 'about' && <AboutPage onOpenEnquiry={handleOpenEnquiry} />}
-
         {activePage === 'expertise' && <ExpertisePage onOpenEnquiry={handleOpenEnquiry} />}
-
         {activePage === 'resources' && <ResourcesPage onOpenEnquiry={handleOpenEnquiry} />}
-
         {activePage === 'faq' && <FaqPage onOpenEnquiry={handleOpenEnquiry} />}
-
         {activePage === 'contact' && <ContactPage />}
-
         {activePage === 'legal' && <LegalPages />}
-
         {activePage === 'admin' && <AdminDashboard />}
       </main>
 

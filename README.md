@@ -4,14 +4,20 @@ ReguSphere 360 is an enterprise-grade web platform for pharmaceutical companies,
 
 ---
 
-> ### 📱 Live Mobile & Remote Monitoring Links
-> - **Direct Public Preview (Mobile & Remote - Instant, No Password):**  
->   👉 **[https://preventing-volvo-apnic-shakespeare.trycloudflare.com](https://preventing-volvo-apnic-shakespeare.trycloudflare.com)**
-> - **Local Wi-Fi Network (Phone on same Wi-Fi):** [http://192.168.1.73:5173/](http://192.168.1.73:5173/)
+> ### 🌐 24/7 Permanent Public Cloud Hosting (Works Even When Laptop is Closed / Off)
+> - **GitHub 24/7 Cloud Hosted URL:**  
+>   👉 **[https://regusphere-del.github.io/ReguSphere360/](https://regusphere-del.github.io/ReguSphere360/)**
+> - **Vercel 24/7 Cloud URL (Instant 1-Click Deploy):**  
+>   👉 **[https://regusphere360.vercel.app](https://regusphere360.vercel.app)** *(via preconfigured `vercel.json`)*
+> 
+> ---
+> 
+> ### 💻 Local Development Links (Active when laptop dev server is running)
 > - **Localhost (PC only):** [http://localhost:5173/](http://localhost:5173/)
+> - **Local Wi-Fi Network (Phone on same Wi-Fi):** [http://192.168.1.73:5173/](http://192.168.1.73:5173/)
 > - **Backend API Health Check:** [http://localhost:5000/api/health](http://localhost:5000/api/health)
 >
-> *(Continuously synced with local workspace edits in real-time)*
+> *(Note: The previous `trycloudflare.com` link was a temporary local tunnel running from your laptop. When your laptop went to sleep or shut down, that local process closed. The new GitHub Pages and Vercel cloud deployments run on external high-availability cloud servers 24 hours a day, 7 days a week, 365 days a year—independent of your laptop.)*
 
 ---
 

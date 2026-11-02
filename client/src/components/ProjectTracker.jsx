@@ -30,24 +30,140 @@ export const ProjectTracker = ({ initialTrackingId, onClose, onNewEnquiry }) => 
   const [errorMsg, setErrorMsg] = useState(null);
 
   // Fetch project by tracking ID
+  const fallbackProjects = {
+    'REG-2026-1001': {
+      trackingId: 'REG-2026-1001',
+      clientName: 'Dr. Sarah Jenkins',
+      email: 'sarah.jenkins@biocrest-therapeutics.com',
+      company: 'BioCrest Therapeutics Inc.',
+      companyType: 'Biotech Startup',
+      selectedServices: ['ICH CTD / eCTD Dossier Indexing & XML Structuring', 'Regulatory Document Gap Assessments'],
+      serviceRequired: 'eCTD & Regulatory Submission Consultancy',
+      targetAgencies: ['US FDA', 'EMA (European Medicines Agency)'],
+      dossierType: 'IND (Investigational New Drug)',
+      therapeuticArea: 'Oncology / Biologics',
+      urgency: 'Accelerated Review (10-14 Business Days)',
+      projectStatus: 'Gap Assessment In Progress',
+      createdAt: '2026-10-28T10:00:00.000Z',
+      projectScopeDetails: 'Initial IND / CTA filing for novel bispecific antibody. Comprehensive Module 3 CMC gap review and eCTD structure indexing before pre-IND health authority meeting.',
+      assignedConsultant: {
+        name: 'Dr. Eleanor Vance, RAC Senior Consultant',
+        email: 'regulatory@regusphere360.com',
+        role: 'Lead Regulatory Affairs Strategist & EU-CTR Lead'
+      },
+      milestones: [
+        {
+          title: 'Enquiry Received & Scoping Started',
+          description: 'Project brief and raw technical dossiers received and categorized.',
+          status: 'completed',
+          updatedAt: '2026-10-28T10:00:00.000Z'
+        },
+        {
+          title: 'Preliminary Gap Assessment & Work Breakdown',
+          description: 'Audit of Module 3 CMC data vs FDA 21 CFR 312 guidelines.',
+          status: 'in-progress',
+          updatedAt: '2026-10-29T14:30:00.000Z'
+        },
+        {
+          title: 'Dossier Structuring & Regulatory Writing Review',
+          description: 'Module 2.3 Quality Overall Summary alignment and leaf hyperlinks.',
+          status: 'pending'
+        },
+        {
+          title: 'Agency Gate Readiness Certification',
+          description: 'Final technical validation against eCTD 3.2.2 DTD specifications.',
+          status: 'pending'
+        }
+      ],
+      uploadedFiles: [
+        { originalName: 'Module_3_CMC_Drug_Substance_Summary.pdf', size: 4210000, mimeType: 'application/pdf' },
+        { originalName: 'BioCrest_PreIND_Briefing_Book_Draft.docx', size: 1850000, mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
+      ]
+    },
+    'REG-2026-1215': {
+      trackingId: 'REG-2026-1215',
+      clientName: 'Rajesh Sharma',
+      email: 'rajesh.sharma@apexformulations.com',
+      company: 'Apex Formulations Ltd.',
+      companyType: 'Finished Dosage Manufacturer',
+      selectedServices: ['CDSCO Licensing & Manufacturing Form 25/28 Guidance'],
+      serviceRequired: 'Licensing Guidance & Regulatory Approvals',
+      targetAgencies: ['CDSCO (India)'],
+      dossierType: 'Manufacturing License Application',
+      therapeuticArea: 'Solid Oral Dosage Forms',
+      urgency: 'Standard (20-30 Business Days)',
+      projectStatus: 'Application Submitted',
+      createdAt: '2026-10-31T09:15:00.000Z',
+      projectScopeDetails: 'Full qualification audit and Form 25 manufacturing license filing with SLA inspectorate checklist.',
+      assignedConsultant: {
+        name: 'Suresh Menon, Ex-Drug Inspector Advisor',
+        email: 'licensing@regusphere360.com',
+        role: 'SLA & CDSCO Technical Licensing Specialist'
+      },
+      milestones: [
+        {
+          title: 'Application Dossier Compiled & Submitted',
+          description: 'Site Master File, technical staff appointments, and plant layouts submitted to portal.',
+          status: 'completed',
+          updatedAt: '2026-10-31T09:15:00.000Z'
+        },
+        {
+          title: 'Joint Regulatory Inspection',
+          description: 'State Licensing Authority and CDSCO inspector audit scheduled.',
+          status: 'in-progress',
+          updatedAt: '2026-11-01T11:00:00.000Z'
+        },
+        {
+          title: 'Verification & Grant of License',
+          description: 'Issuance of statutory Form 25 manufacturing certificate.',
+          status: 'pending'
+        }
+      ],
+      uploadedFiles: [
+        { originalName: 'Site_Master_File_Apex_Unit2.pdf', size: 3100000, mimeType: 'application/pdf' }
+      ]
+    }
+  };
+
+  // Fetch project by tracking ID
   const handleSearch = async (idToSearch) => {
-    const id = (idToSearch || trackingIdInput).trim();
+    const id = (idToSearch || trackingIdInput).trim().toUpperCase();
     if (!id) return;
     setErrorMsg(null);
     setIsLoading(true);
 
     try {
-      const res = await axios.get(`${API_BASE}/enquiries/track/${encodeURIComponent(id)}`);
-      if (res.data.success) {
+      const res = await axios.get(`${API_BASE}/enquiries/track/${encodeURIComponent(id)}`, { timeout: 3500 });
+      if (res.data.success && res.data.enquiry) {
         setProjectData(res.data.enquiry);
+        return;
       }
     } catch (err) {
-      console.error(err);
-      setErrorMsg(err.response?.data?.message || `Project '${id}' not found. Verify your code.`);
-      setProjectData(null);
+      console.warn('Backend unavailable, checking client fallback data for:', id);
     } finally {
       setIsLoading(false);
     }
+
+    // Check pre-seeded fallback projects
+    if (fallbackProjects[id]) {
+      setProjectData(fallbackProjects[id]);
+      return;
+    }
+
+    // Check localStorage for newly created submissions
+    try {
+      const stored = JSON.parse(localStorage.getItem('regusphere_client_enquiries') || '[]');
+      const found = stored.find((item) => item.trackingId?.toUpperCase() === id);
+      if (found) {
+        setProjectData(found);
+        return;
+      }
+    } catch (e) {
+      console.warn(e);
+    }
+
+    setErrorMsg(`Project '${id}' not found. Please verify the code or test with REG-2026-1001 or REG-2026-1215.`);
+    setProjectData(null);
   };
 
   // On mount or if initialTrackingId provided

@@ -195,37 +195,49 @@ router.post('/', upload.array('files', 5), async (req, res) => {
   try {
     const {
       clientName,
+      fullName,
       email,
       phone,
       company,
+      organization,
+      country,
       companyType,
+      serviceRequired,
       selectedServices,
       targetAgencies,
       dossierType,
+      productCategory,
       therapeuticArea,
       targetSubmissionDate,
+      preferredConsultationDate,
       urgency,
       projectScopeDetails,
+      description,
       firebaseUid,
     } = req.body;
 
-    if (!clientName || !email || !company) {
+    const finalClientName = (fullName || clientName || '').trim();
+    const finalCompany = (organization || company || 'Independent Sponsor').trim();
+
+    if (!finalClientName || !email) {
       return res.status(400).json({
         success: false,
-        message: 'Client name, email, and company are required fields.',
+        message: 'Client Full Name and Email Address are mandatory.',
       });
     }
 
     const parsedServices = Array.isArray(selectedServices)
       ? selectedServices
-      : typeof selectedServices === 'string'
-      ? JSON.parse(selectedServices || '[]')
+      : typeof selectedServices === 'string' && selectedServices.trim()
+      ? (selectedServices.startsWith('[') ? JSON.parse(selectedServices) : [selectedServices])
+      : serviceRequired
+      ? [serviceRequired]
       : [];
 
     const parsedAgencies = Array.isArray(targetAgencies)
       ? targetAgencies
-      : typeof targetAgencies === 'string'
-      ? JSON.parse(targetAgencies || '[]')
+      : typeof targetAgencies === 'string' && targetAgencies.trim()
+      ? (targetAgencies.startsWith('[') ? JSON.parse(targetAgencies) : [targetAgencies])
       : [];
 
     const trackingId = generateTrackingId();
@@ -243,44 +255,52 @@ router.post('/', upload.array('files', 5), async (req, res) => {
     const milestones = [
       {
         title: 'Enquiry Received & Scoping Started',
-        description: 'Your project brief and documentation have been queued for senior regulatory scoping.',
+        description: 'Your consultation requirement has been queued for senior regulatory scoping.',
         status: 'completed',
         completedAt: new Date(),
       },
       {
         title: 'Preliminary Gap Assessment & Work Breakdown',
-        description: 'Evaluation against target health authority guidelines (eCTD/ICH specifications).',
+        description: 'Evaluation against target health authority guidelines & dossier specifications.',
         status: 'in-progress',
       },
       {
-        title: 'Dossier Structuring & Regulatory Writing Review',
-        description: 'Module index alignment, cross-referencing audit, and technical consistency checks.',
+        title: 'Regulatory Guidance & Dossier Review',
+        description: 'Preparation of scoping brief, regulatory pathway alignment, and compliance review.',
         status: 'pending',
       },
       {
         title: 'Submission Readiness Validation Gate',
-        description: 'Validation report generation, electronic submission checklist sign-off.',
+        description: 'Validation report generation and health authority readiness sign-off.',
         status: 'pending',
       },
     ];
 
     const enquiryData = {
       trackingId,
-      clientName,
+      clientName: finalClientName,
+      fullName: finalClientName,
       email: email.toLowerCase().trim(),
-      phone,
-      company,
+      phone: phone || '',
+      company: finalCompany,
+      organization: finalCompany,
+      country: country || 'India',
       companyType: companyType || 'Pharma Enterprise',
+      serviceRequired: serviceRequired || (parsedServices[0] || 'eCTD Consultancy'),
+      mainServiceCategory: serviceRequired || (parsedServices[0] || 'eCTD & Regulatory Submission Consultancy'),
       selectedServices: parsedServices,
       targetAgencies: parsedAgencies,
       dossierType: dossierType || 'eCTD',
-      therapeuticArea,
-      targetSubmissionDate,
+      productCategory: productCategory || 'Small Molecules (Generics / NCEs)',
+      therapeuticArea: therapeuticArea || '',
+      targetSubmissionDate: targetSubmissionDate || '',
+      preferredConsultationDate: preferredConsultationDate || '',
       urgency: urgency || 'Standard (4-6 weeks)',
-      projectScopeDetails,
+      projectScopeDetails: description || projectScopeDetails || '',
+      description: description || projectScopeDetails || '',
       estimatedQuotation: quote,
       uploadedFiles,
-      projectStatus: 'Enquiry Submitted',
+      projectStatus: 'Application Submitted',
       milestones,
       assignedConsultant: {
         name: 'Dr. Eleanor Vance, RAC Senior Consultant',
@@ -300,9 +320,23 @@ router.post('/', upload.array('files', 5), async (req, res) => {
     // Always keep in memory store as cache
     memoryEnquiries.unshift(enquiryData);
 
+    // Notify Administrator (Simulated Email & Logging)
+    console.log(`\n======================================================`);
+    console.log(`[EMAIL NOTIFICATION TO REGULATORY ADMINISTRATOR]`);
+    console.log(`Subject: New Consultation Request Received - Reference: ${trackingId}`);
+    console.log(`To: admin@regusphere360.com, lead.consultant@regusphere360.com`);
+    console.log(`Client: ${finalClientName} | ${finalCompany} (${country || 'India'})`);
+    console.log(`Email: ${email} | Phone: ${phone || 'N/A'}`);
+    console.log(`Service: ${serviceRequired || parsedServices.join(', ')}`);
+    console.log(`Product / License Category: ${productCategory || 'Standard'}`);
+    console.log(`Preferred Date: ${preferredConsultationDate || 'Earliest Available'}`);
+    console.log(`Files Attached: ${uploadedFiles.length}`);
+    console.log(`Reference Tracking ID: ${trackingId}`);
+    console.log(`======================================================\n`);
+
     res.status(201).json({
       success: true,
-      message: 'Regulatory Documentation Consultancy enquiry submitted successfully.',
+      message: 'Consultation request submitted successfully. A regulatory specialist has been notified.',
       trackingId,
       enquiry: enquiryData,
     });
