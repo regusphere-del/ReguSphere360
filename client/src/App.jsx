@@ -13,6 +13,7 @@ import { EducationTrainingPage } from './pages/EducationTrainingPage';
 import { EducationHubPage } from './pages/EducationHubPage';
 import { LearningCentrePage } from './pages/LearningCentrePage';
 import { MPharmStudyCornerPage } from './pages/MPharmStudyCornerPage';
+import { LiveRegulatoryUpdatesPage } from './pages/LiveRegulatoryUpdatesPage';
 import { ConsultationRequestPage } from './pages/ConsultationRequestPage';
 import { ClientDashboard } from './pages/ClientDashboard';
 import { ProcessPage } from './pages/ProcessPage';
@@ -168,6 +169,14 @@ function ConsultancyApp() {
         {/* 8d. M.Pharm Regulatory Affairs Study Corner */}
         {activePage === 'mpharm-study-corner' && (
           <MPharmStudyCornerPage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+
+        {/* 8e. CDSCO & USFDA Live Regulatory Updates Dashboard */}
+        {activePage === 'live-updates' && (
+          <LiveRegulatoryUpdatesPage
             onNavigate={handleNavigate}
             onOpenEnquiry={handleOpenEnquiry}
           />

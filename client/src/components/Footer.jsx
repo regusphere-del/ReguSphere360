@@ -168,6 +168,18 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                 </button>
               </li>
               <li>
+                <button
+                  onClick={() => onNavigate('live-updates')}
+                  className="hover:text-teal-400 text-left transition-colors text-emerald-300 font-bold flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>CDSCO & USFDA Live Updates</span>
+                  <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-900/60 text-emerald-300 border border-emerald-700 font-bold">
+                    LIVE
+                  </span>
+                </button>
+              </li>
+              <li>
                 <button onClick={() => onNavigate('admin')} className="hover:text-teal-400 text-left transition-colors text-slate-500">
                   Admin Operations Portal
                 </button>

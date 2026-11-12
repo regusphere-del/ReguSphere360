@@ -148,4 +148,13 @@ Frontend runs on: `http://localhost:5173`
 7. **M.Pharm Regulatory Affairs Study Corner**:
    - Dedicated academic repository supporting M.Pharm RA students across 12 content categories: Semester-wise syllabus, Subject-wise materials, Unit notes, 2-mark, 5-mark, 10-mark Q&As, previous examination papers, seminar decks, assignment guides, research/dissertation methodology, viva voce handbook, and recommended textbooks.
    - Multi-university academic scheme selector supporting PCI Uniform Regulations, RGUHS Scheme-4, JNTU R21/R23, SPPU CBCS, NIPER Autonomous, and Jamia Hamdard SPER.
-   - Comprehensive administrative resource management (upload, edit, categorize, and remove academic materials).
+8. **CDSCO & USFDA Live Regulatory Updates Dashboard**:
+   - Automated regulatory intelligence dashboard titled **Global Pharmaceutical Regulatory Updates** monitoring official regulatory announcements from CDSCO (India) and USFDA (USA).
+   - Automated retrieval system ingesting openFDA APIs (`/drug/enforcement.json` for recalls and `/drug/drugsfda.json` for approvals) alongside verified CDSCO circulars, notifications, and new drug pipeline data.
+   - Dual-mode scheduled refresh mechanism (default 60 minutes, administrator-configurable between 5 and 1440 minutes) with duplicate detection via unique source record IDs and in-memory dual fallback resilience.
+   - Clear distinction between actual source publication dates and system retrieval/verification timestamps.
+   - Advanced search, filtering by authority (CDSCO / USFDA), 10 regulatory categories, and newest/oldest sorting.
+   - Professional update cards with authority badges, regulatory significance highlights, official source reference links, and modal educational breakdowns detailing Plain Language Summaries, Affected Stakeholders, Industry Impact, and Student Learning Points.
+   - Secure Administrator Governance Hub with live sync status, manual "Sync Now" trigger, scheduled interval configuration, sync execution logs, publication status toggles, featured announcement pinning, and manual update authoring.
+   - Comprehensive Official Source Directory linking directly to CDSCO, USFDA, Drugs@FDA, openFDA, FDA Guidance, and FDA Safety Communications.
+

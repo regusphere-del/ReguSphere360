@@ -12,6 +12,8 @@ import courseRoutes from './routes/courseRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import licenseRoutes from './routes/licenseRoutes.js';
 import mpharmRoutes from './routes/mpharmRoutes.js';
+import regulatoryUpdateRoutes from './routes/regulatoryUpdateRoutes.js';
+import { regulatorySyncService } from './services/regulatorySyncService.js';
 
 dotenv.config();
 
@@ -64,6 +66,10 @@ app.use('/api/courses', courseRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/licenses', licenseRoutes);
 app.use('/api/mpharm-resources', mpharmRoutes);
+app.use('/api/regulatory-updates', regulatoryUpdateRoutes);
+
+// Initialize automated regulatory synchronization service
+regulatorySyncService.init();
 
 // Global Error Handler
 app.use((err, req, res, next) => {

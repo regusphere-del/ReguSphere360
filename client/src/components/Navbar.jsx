@@ -108,6 +108,7 @@ export const Navbar = ({
                   'education-hub',
                   'learning-centre',
                   'mpharm-study-corner',
+                  'live-updates',
                 ].includes(activePage)
                   ? 'text-teal-700 font-bold border-b-2 border-teal-600'
                   : 'text-slate-600 hover:text-teal-700'
@@ -218,6 +219,31 @@ export const Navbar = ({
                       </p>
                       <p className="text-[10px] text-slate-500 leading-snug">
                         CDSCO, US FDA, EMA, MHRA, PMDA, TGA & WHO guidance
+                      </p>
+                    </div>
+                  </button>
+
+                  {/* CDSCO & USFDA Live Updates Link */}
+                  <button
+                    onClick={() => {
+                      onNavigate('live-updates');
+                      setServicesDropdown(false);
+                    }}
+                    className="w-full text-left p-2 rounded-xl hover:bg-emerald-50/50 flex items-start space-x-2.5 transition-colors group border border-emerald-100 bg-emerald-50/30"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-700 group-hover:text-white transition-colors relative">
+                      <Activity className="w-3.5 h-3.5" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 absolute -top-0.5 -right-0.5 animate-ping" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-900 group-hover:text-emerald-800 flex items-center gap-1.5">
+                        CDSCO & USFDA Live Updates
+                        <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">
+                          LIVE
+                        </span>
+                      </p>
+                      <p className="text-[10px] text-slate-500 leading-snug">
+                        Automated live drug approvals, safety alerts, recalls & circulars
                       </p>
                     </div>
                   </button>
@@ -337,6 +363,7 @@ export const Navbar = ({
           </div>
 
           {/* Quick Direct Navigation Links */}
+          {navItem('live-updates', 'Live Updates')}
           {navItem('services-license-tracking', 'Track License')}
           {navItem('education-hub', 'Education Hub')}
           {navItem('mpharm-study-corner', 'M.Pharm Corner')}
@@ -561,6 +588,18 @@ export const Navbar = ({
             className="w-full text-left py-2 font-semibold text-slate-700 border-b border-slate-100 pl-2"
           >
             • Regulatory Education & Training
+          </button>
+          <button
+            onClick={() => {
+              onNavigate('live-updates');
+              setMobileMenuOpen(false);
+            }}
+            className="w-full text-left py-2 font-semibold text-emerald-700 border-b border-slate-100 pl-2 flex items-center gap-2 bg-emerald-50/50"
+          >
+            • Live Regulatory Updates
+            <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">
+              CDSCO & USFDA
+            </span>
           </button>
           <button
             onClick={() => {
