@@ -136,3 +136,16 @@ Frontend runs on: `http://localhost:5173`
    - Real-time tracking by ID (try sample: `REG-2026-1001` or newly submitted ID).
    - Milestone progress visualization (`Enquiry Received` -> `Document Scoping` -> `Gap Assessment` -> `Ready for Submission`).
    - Lead RAC Consultant card and uploaded documents inspector.
+
+5. **ReguSphere 360 – Education Hub**:
+   - Dedicated academic destination with 6 interactive tabs: Learning Pathways, Official ICH Guidelines, Topic Library, A-Z Regulatory Affairs Glossary, Self-Assessment Quiz, and Global Regulatory Authority Portals.
+   - Tailored learning pathways for B.Pharm, M.Pharm RA, Pharm.D students, and Industry Professionals.
+
+6. **Pharmaceutical Regulatory Affairs Learning Centre**:
+   - 10 Core Modules covering Foundations, Drug Development, Indian Framework, International Authorities, ICH Guidelines, eCTD Submissions, GxP, Lifecycle Management, and Regulatory Intelligence.
+   - Beginner, Intermediate, and Advanced learning levels with real-world case examples and downloadable study guides.
+
+7. **M.Pharm Regulatory Affairs Study Corner**:
+   - Dedicated academic repository supporting M.Pharm RA students across 12 content categories: Semester-wise syllabus, Subject-wise materials, Unit notes, 2-mark, 5-mark, 10-mark Q&As, previous examination papers, seminar decks, assignment guides, research/dissertation methodology, viva voce handbook, and recommended textbooks.
+   - Multi-university academic scheme selector supporting PCI Uniform Regulations, RGUHS Scheme-4, JNTU R21/R23, SPPU CBCS, NIPER Autonomous, and Jamia Hamdard SPER.
+   - Comprehensive administrative resource management (upload, edit, categorize, and remove academic materials).

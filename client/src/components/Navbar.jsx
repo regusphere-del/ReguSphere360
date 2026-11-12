@@ -105,6 +105,9 @@ export const Navbar = ({
                   'intelligence',
                   'services-licensing-guidance',
                   'education',
+                  'education-hub',
+                  'learning-centre',
+                  'mpharm-study-corner',
                 ].includes(activePage)
                   ? 'text-teal-700 font-bold border-b-2 border-teal-600'
                   : 'text-slate-600 hover:text-teal-700'
@@ -260,6 +263,74 @@ export const Navbar = ({
                       </p>
                     </div>
                   </button>
+
+                  {/* Education Hub */}
+                  <div className="px-2 pt-2 pb-1">
+                    <div className="border-t border-slate-100 pt-2">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Learning & Academic Hubs</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      onNavigate('education-hub');
+                      setServicesDropdown(false);
+                    }}
+                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-start space-x-2.5 transition-colors group"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                      <BookOpen className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-900 group-hover:text-teal-700 flex items-center gap-1.5">
+                        Education Hub
+                      </p>
+                      <p className="text-[10px] text-slate-500 leading-snug">
+                        ICH guidelines, topic library, RA glossary & self-assessment quiz
+                      </p>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      onNavigate('learning-centre');
+                      setServicesDropdown(false);
+                    }}
+                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-start space-x-2.5 transition-colors group"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                      <Layers className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-900 group-hover:text-blue-700 flex items-center gap-1.5">
+                        Learning Centre
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 font-bold border border-blue-200">10 TOPICS</span>
+                      </p>
+                      <p className="text-[10px] text-slate-500 leading-snug">
+                        Beginner to advanced modules with industry examples & downloadable notes
+                      </p>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      onNavigate('mpharm-study-corner');
+                      setServicesDropdown(false);
+                    }}
+                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-start space-x-2.5 transition-colors group"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                      <GraduationCap className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-slate-900 group-hover:text-indigo-700 flex items-center gap-1.5">
+                        M.Pharm Study Corner
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold border border-indigo-200">M.PHARM RA</span>
+                      </p>
+                      <p className="text-[10px] text-slate-500 leading-snug">
+                        PCI & university syllabi, 2/5/10 mark Q&A, exam papers, seminars & viva
+                      </p>
+                    </div>
+                  </button>
                 </div>
               </div>
             )}
@@ -267,6 +338,8 @@ export const Navbar = ({
 
           {/* Quick Direct Navigation Links */}
           {navItem('services-license-tracking', 'Track License')}
+          {navItem('education-hub', 'Education Hub')}
+          {navItem('mpharm-study-corner', 'M.Pharm Corner')}
           {navItem('process', 'Process')}
           {navItem('about', 'About Us')}
           {navItem('resources', 'Resources')}
@@ -488,6 +561,34 @@ export const Navbar = ({
             className="w-full text-left py-2 font-semibold text-slate-700 border-b border-slate-100 pl-2"
           >
             • Regulatory Education & Training
+          </button>
+          <button
+            onClick={() => {
+              onNavigate('education-hub');
+              setMobileMenuOpen(false);
+            }}
+            className="w-full text-left py-2 font-semibold text-teal-700 border-b border-slate-100 pl-2 flex items-center gap-2"
+          >
+            • Education Hub
+          </button>
+          <button
+            onClick={() => {
+              onNavigate('learning-centre');
+              setMobileMenuOpen(false);
+            }}
+            className="w-full text-left py-2 font-semibold text-blue-700 border-b border-slate-100 pl-2 flex items-center gap-2"
+          >
+            • Learning Centre (10 Modules)
+          </button>
+          <button
+            onClick={() => {
+              onNavigate('mpharm-study-corner');
+              setMobileMenuOpen(false);
+            }}
+            className="w-full text-left py-2 font-semibold text-indigo-700 border-b border-slate-100 pl-2 flex items-center gap-2"
+          >
+            • M.Pharm Study Corner
+            <span className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold border border-indigo-200">M.PHARM RA</span>
           </button>
           <button
             onClick={() => {

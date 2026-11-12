@@ -27,6 +27,10 @@ import {
   Printer,
   ShieldCheck,
   FileCheck2,
+  BookOpen,
+  Plus,
+  Trash2,
+  Edit3,
 } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -81,7 +85,27 @@ export const AdminDashboard = () => {
   const [reportData, setReportData] = useState(null);
   const [isGeneratingReport, setIsGeneratingReport] = useState(false);
 
-  const [activeTab, setActiveTab] = useState('enquiries'); // 'enquiries' | 'licenses' | 'training'
+  const [activeTab, setActiveTab] = useState('enquiries'); // 'enquiries' | 'licenses' | 'training' | 'academic'
+
+  // Academic Resources management state
+  const [academicResources, setAcademicResources] = useState([]);
+  const [acadSearch, setAcadSearch] = useState('');
+  const [acadUnivFilter, setAcadUnivFilter] = useState('All');
+  const [acadTypeFilter, setAcadTypeFilter] = useState('All');
+  const [editingAcadResource, setEditingAcadResource] = useState(null);
+  const [isCreatingAcad, setIsCreatingAcad] = useState(false);
+  const [acadForm, setAcadForm] = useState({
+    title: '',
+    university: 'pci-uniform',
+    scheme: 'PCI Uniform Master Syllabus',
+    semester: 'Semester I',
+    subject: 'Good Regulatory Practices (MRA 101T)',
+    unit: 'Unit I',
+    topic: '',
+    resourceType: 'Unit-wise Notes and Explanations',
+    marksCategory: 'All',
+    content: '',
+  });
 
   useEffect(() => {
     fetchDashboardData();
@@ -89,19 +113,57 @@ export const AdminDashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const [statsRes, enqRes, licRes, regRes] = await Promise.all([
-        axios.get(`${API_BASE}/admin/overview`),
-        axios.get(`${API_BASE}/enquiries`),
-        axios.get(`${API_BASE}/licenses`),
-        axios.get(`${API_BASE}/courses/registrations/all`),
+      const [statsRes, enqRes, licRes, regRes, acadRes] = await Promise.all([
+        axios.get(`${API_BASE}/admin/overview`).catch(() => ({ data: { success: false } })),
+        axios.get(`${API_BASE}/enquiries`).catch(() => ({ data: { success: false } })),
+        axios.get(`${API_BASE}/licenses`).catch(() => ({ data: { success: false } })),
+        axios.get(`${API_BASE}/courses/registrations/all`).catch(() => ({ data: { success: false } })),
+        axios.get(`${API_BASE}/mpharm-resources`).catch(() => ({ data: { success: false } })),
       ]);
 
-      if (statsRes.data.success) setStats(statsRes.data.stats);
-      if (enqRes.data.success) setEnquiries(enqRes.data.enquiries || []);
-      if (licRes.data.success) setLicenses(licRes.data.licenses || []);
-      if (regRes.data.success) setRegistrations(regRes.data.registrations || []);
+      if (statsRes.data?.success) setStats(statsRes.data.stats);
+      if (enqRes.data?.success) setEnquiries(enqRes.data.enquiries || []);
+      if (licRes.data?.success) setLicenses(licRes.data.licenses || []);
+      if (regRes.data?.success) setRegistrations(regRes.data.registrations || []);
+      if (acadRes.data?.success) setAcademicResources(acadRes.data.resources || []);
     } catch (err) {
       console.warn('Dashboard fetch notice:', err.message);
+    }
+  };
+
+  const handleSaveAcadResource = async (e) => {
+    e.preventDefault();
+    try {
+      if (isCreatingAcad) {
+        const res = await axios.post(`${API_BASE}/mpharm-resources`, acadForm);
+        if (res.data?.success) {
+          setAcademicResources((prev) => [res.data.resource, ...prev]);
+        }
+        alert('Academic resource uploaded successfully.');
+      } else if (editingAcadResource) {
+        const res = await axios.put(`${API_BASE}/mpharm-resources/${editingAcadResource.id}`, acadForm);
+        if (res.data?.success) {
+          setAcademicResources((prev) =>
+            prev.map((r) => (r.id === editingAcadResource.id ? res.data.resource : r))
+          );
+        }
+        alert('Academic resource updated.');
+      }
+      setIsCreatingAcad(false);
+      setEditingAcadResource(null);
+    } catch (err) {
+      alert('Error saving academic resource: ' + err.message);
+    }
+  };
+
+  const handleDeleteAcadResource = async (id, title) => {
+    if (!window.confirm(`Delete academic resource "${title}"?`)) return;
+    try {
+      await axios.delete(`${API_BASE}/mpharm-resources/${id}`);
+      setAcademicResources((prev) => prev.filter((r) => r.id !== id));
+      alert('Resource removed.');
+    } catch (err) {
+      alert('Error deleting resource: ' + err.message);
     }
   };
 
@@ -300,6 +362,18 @@ export const AdminDashboard = () => {
           >
             <GraduationCap className="w-4 h-4" />
             <span>Course Registrations ({registrations.length})</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('academic')}
+            className={`px-4 py-2.5 rounded-xl font-bold text-xs transition-colors flex items-center space-x-2 ${
+              activeTab === 'academic'
+                ? 'bg-indigo-900 text-white shadow-sm'
+                : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            <BookOpen className="w-4 h-4 text-indigo-400" />
+            <span>Academic Resources (M.Pharm) ({academicResources.length})</span>
           </button>
         </div>
 
@@ -516,6 +590,302 @@ export const AdminDashboard = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+        )}
+
+        {/* TAB 4: M.PHARM ACADEMIC RESOURCES REPOSITORY */}
+        {activeTab === 'academic' && (
+          <div className="space-y-4">
+            {/* Action Bar */}
+            <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+              <div className="flex items-center space-x-2 flex-1 w-full">
+                <div className="relative flex-1">
+                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    value={acadSearch}
+                    onChange={(e) => setAcadSearch(e.target.value)}
+                    placeholder="Search academic resources by title, subject, unit..."
+                    className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:border-teal-500"
+                  />
+                </div>
+
+                <select
+                  value={acadUnivFilter}
+                  onChange={(e) => setAcadUnivFilter(e.target.value)}
+                  className="bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800"
+                >
+                  <option value="All">All Universities</option>
+                  <option value="pci-uniform">PCI Uniform</option>
+                  <option value="rguhs">RGUHS</option>
+                  <option value="jntu">JNTU</option>
+                  <option value="sppu">SPPU</option>
+                  <option value="niper">NIPER</option>
+                  <option value="jamia-hamdard">Jamia Hamdard</option>
+                </select>
+
+                <select
+                  value={acadTypeFilter}
+                  onChange={(e) => setAcadTypeFilter(e.target.value)}
+                  className="bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800"
+                >
+                  <option value="All">All Resource Types</option>
+                  <option value="Semester-wise Syllabus">Syllabus</option>
+                  <option value="Subject-wise Study Materials">Study Materials</option>
+                  <option value="Unit-wise Notes and Explanations">Unit Notes</option>
+                  <option value="Short-answer questions (2 marks)">2-Mark Questions</option>
+                  <option value="Medium-answer questions (5 marks)">5-Mark Questions</option>
+                  <option value="Long-answer questions (10 marks)">10-Mark Questions</option>
+                  <option value="Previous examination question papers">Exam Papers</option>
+                  <option value="Seminar topics and presentation materials">Seminars</option>
+                  <option value="Assignment preparation resources">Assignments</option>
+                  <option value="Research methodology and project guidance">Research/Thesis</option>
+                  <option value="Viva voce questions and answers">Viva Voce</option>
+                  <option value="Recommended textbooks and reference materials">Textbooks</option>
+                </select>
+              </div>
+
+              <button
+                onClick={() => {
+                  setIsCreatingAcad(true);
+                  setEditingAcadResource(null);
+                  setAcadForm({
+                    title: '',
+                    university: 'pci-uniform',
+                    scheme: 'PCI Uniform Master Syllabus',
+                    semester: 'Semester I',
+                    subject: 'Good Regulatory Practices (MRA 101T)',
+                    unit: 'Unit I',
+                    topic: '',
+                    resourceType: 'Unit-wise Notes and Explanations',
+                    marksCategory: 'All',
+                    content: '',
+                  });
+                }}
+                className="w-full sm:w-auto px-4 py-2 bg-indigo-700 hover:bg-indigo-800 text-white font-bold rounded-xl flex items-center justify-center space-x-1.5 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Upload New Academic Resource</span>
+              </button>
+            </div>
+
+            {/* Academic Resources Table */}
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto text-xs">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 text-slate-500 font-bold border-b border-slate-200">
+                    <th className="py-3 px-4">Title & University</th>
+                    <th className="py-3 px-4">Semester & Subject</th>
+                    <th className="py-3 px-4">Resource Type</th>
+                    <th className="py-3 px-4">Category</th>
+                    <th className="py-3 px-4">Upload Date</th>
+                    <th className="py-3 px-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {academicResources
+                    .filter((r) => {
+                      if (acadUnivFilter !== 'All' && r.university !== acadUnivFilter) return false;
+                      if (acadTypeFilter !== 'All' && r.resourceType !== acadTypeFilter) return false;
+                      if (acadSearch.trim()) {
+                        const q = acadSearch.toLowerCase();
+                        return (
+                          r.title.toLowerCase().includes(q) ||
+                          r.subject.toLowerCase().includes(q) ||
+                          r.topic.toLowerCase().includes(q)
+                        );
+                      }
+                      return true;
+                    })
+                    .map((item) => (
+                      <tr key={item.id} className="hover:bg-slate-50">
+                        <td className="py-3.5 px-4 font-bold text-slate-900 max-w-sm">
+                          <span className="block">{item.title}</span>
+                          <span className="text-[10px] text-indigo-700 font-semibold">{item.scheme || item.university}</span>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-700">
+                          <strong className="block">{item.semester}</strong>
+                          <span className="text-[11px] text-slate-500">{item.subject}</span>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-600">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-800 border border-slate-200">
+                            {item.resourceType}
+                          </span>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-700 font-medium font-mono text-[11px]">
+                          {item.marksCategory || 'All'}
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-500 whitespace-nowrap">{item.uploadDate}</td>
+                        <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                          <div className="flex items-center justify-end space-x-1.5">
+                            <button
+                              onClick={() => {
+                                setEditingAcadResource(item);
+                                setIsCreatingAcad(false);
+                                setAcadForm({
+                                  title: item.title,
+                                  university: item.university,
+                                  scheme: item.scheme,
+                                  semester: item.semester,
+                                  subject: item.subject,
+                                  unit: item.unit,
+                                  topic: item.topic,
+                                  resourceType: item.resourceType,
+                                  marksCategory: item.marksCategory || 'All',
+                                  content: item.content,
+                                });
+                              }}
+                              className="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold flex items-center space-x-1"
+                            >
+                              <Edit3 className="w-3 h-3" />
+                              <span>Edit</span>
+                            </button>
+                            <button
+                              onClick={() => handleDeleteAcadResource(item.id, item.title)}
+                              className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100 font-bold flex items-center space-x-1"
+                            >
+                              <Trash2 className="w-3 h-3" />
+                              <span>Delete</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* MODAL: ACADEMIC RESOURCE EDIT / CREATE */}
+        {(isCreatingAcad || editingAcadResource) && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm overflow-y-auto">
+            <div className="bg-white w-full max-w-2xl rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-2xl relative my-8 text-xs">
+              <button
+                onClick={() => {
+                  setIsCreatingAcad(false);
+                  setEditingAcadResource(null);
+                }}
+                className="absolute top-5 right-5 text-slate-400 hover:text-slate-800"
+              >
+                ✕
+              </button>
+
+              <h3 className="text-lg font-bold text-slate-900 mb-1">
+                {isCreatingAcad ? 'Upload New M.Pharm Academic Resource' : 'Edit Academic Resource'}
+              </h3>
+              <p className="text-slate-500 mb-4">Manage academic notes, question banks, or past question papers.</p>
+
+              <form onSubmit={handleSaveAcadResource} className="space-y-3">
+                <div>
+                  <label className="block text-slate-700 font-bold mb-1">Title *</label>
+                  <input
+                    type="text"
+                    required
+                    value={acadForm.title}
+                    onChange={(e) => setAcadForm({ ...acadForm, title: e.target.value })}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-900"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-1">University</label>
+                    <select
+                      value={acadForm.university}
+                      onChange={(e) => setAcadForm({ ...acadForm, university: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-900"
+                    >
+                      <option value="pci-uniform">PCI Uniform</option>
+                      <option value="rguhs">RGUHS</option>
+                      <option value="jntu">JNTU</option>
+                      <option value="sppu">SPPU</option>
+                      <option value="niper">NIPER</option>
+                      <option value="jamia-hamdard">Jamia Hamdard</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-1">Semester</label>
+                    <select
+                      value={acadForm.semester}
+                      onChange={(e) => setAcadForm({ ...acadForm, semester: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-900"
+                    >
+                      <option value="Semester I">Semester I</option>
+                      <option value="Semester II">Semester II</option>
+                      <option value="Semester III">Semester III</option>
+                      <option value="Semester IV">Semester IV</option>
+                      <option value="All Semesters">All Semesters</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-1">Subject</label>
+                    <input
+                      type="text"
+                      value={acadForm.subject}
+                      onChange={(e) => setAcadForm({ ...acadForm, subject: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-900"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-1">Resource Type</label>
+                    <select
+                      value={acadForm.resourceType}
+                      onChange={(e) => setAcadForm({ ...acadForm, resourceType: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-slate-900"
+                    >
+                      <option value="Semester-wise Syllabus">Semester-wise Syllabus</option>
+                      <option value="Subject-wise Study Materials">Subject-wise Study Materials</option>
+                      <option value="Unit-wise Notes and Explanations">Unit-wise Notes and Explanations</option>
+                      <option value="Short-answer questions (2 marks)">Short-answer questions (2 marks)</option>
+                      <option value="Medium-answer questions (5 marks)">Medium-answer questions (5 marks)</option>
+                      <option value="Long-answer questions (10 marks)">Long-answer questions (10 marks)</option>
+                      <option value="Previous examination question papers">Previous examination question papers</option>
+                      <option value="Seminar topics and presentation materials">Seminar topics and presentation materials</option>
+                      <option value="Assignment preparation resources">Assignment preparation resources</option>
+                      <option value="Research methodology and project guidance">Research methodology and project guidance</option>
+                      <option value="Viva voce questions and answers">Viva voce questions and answers</option>
+                      <option value="Recommended textbooks and reference materials">Recommended textbooks and reference materials</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-slate-700 font-bold mb-1">Content / Study Notes *</label>
+                  <textarea
+                    rows={6}
+                    required
+                    value={acadForm.content}
+                    onChange={(e) => setAcadForm({ ...acadForm, content: e.target.value })}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-slate-900 font-mono text-xs"
+                  />
+                </div>
+
+                <div className="pt-2 flex justify-end space-x-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsCreatingAcad(false);
+                      setEditingAcadResource(null);
+                    }}
+                    className="px-4 py-2 rounded-xl text-slate-600 hover:text-slate-900"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-5 py-2.5 rounded-xl bg-indigo-700 hover:bg-indigo-800 text-white font-bold"
+                  >
+                    {isCreatingAcad ? 'Publish Resource' : 'Save Changes'}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         )}
 

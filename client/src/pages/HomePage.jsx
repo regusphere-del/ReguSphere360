@@ -18,6 +18,7 @@ import {
   Sparkles,
   ExternalLink,
   BookmarkCheck,
+  BookOpen,
 } from 'lucide-react';
 
 export const HomePage = ({
@@ -605,6 +606,68 @@ export const HomePage = ({
             >
               Start Step 1: Submit Consultation Request
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* EDUCATION HUB PROMO BANNER */}
+      <section className="py-14 bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-300 text-xs font-bold mb-4">
+                <GraduationCap className="w-3.5 h-3.5" />
+                <span>Education Hub — Now Live</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-teal-500/30 border border-teal-400/30 font-black">NEW</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-4">
+                ReguSphere 360{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-300">
+                  Education Hub
+                </span>
+              </h2>
+              <p className="text-slate-300 text-base mb-2 font-medium italic">
+                "Learn. Explore. Understand. Excel in Pharmaceutical Regulatory Affairs."
+              </p>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                Your dedicated learning destination for pharmaceutical regulatory knowledge — ICH guidelines, learning pathways for B.Pharm, M.Pharm RA, Pharm.D students and industry professionals, a full RA glossary, and a self-assessment quiz.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={() => onNavigate('education-hub')}
+                  className="px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-colors shadow-lg shadow-teal-500/20"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  Explore Education Hub
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => onNavigate('education-hub')}
+                  className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs flex items-center gap-2 transition-colors"
+                >
+                  <Sparkles className="w-4 h-4 text-amber-400" />
+                  Take the RA Quiz
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { label: 'Learning Pathways', desc: 'B.Pharm, M.Pharm RA, Pharm.D & Professional tracks', icon: GraduationCap, color: 'teal' },
+                { label: 'ICH Guideline Library', desc: '20+ harmonized Q, S, E & M guidelines with direct links', icon: FileText, color: 'indigo' },
+                { label: 'RA Topic Library', desc: 'Drug development, CTD writing, GxP & global agencies', icon: BookOpen, color: 'amber' },
+                { label: 'RA Glossary + Quiz', desc: '22-term A–Z glossary and 10-question self-assessment', icon: Sparkles, color: 'rose' },
+              ].map((card, i) => {
+                const CardIcon = card.icon;
+                return (
+                  <div key={i} className="p-4 rounded-xl bg-white/8 border border-white/10 hover:bg-white/12 transition-colors cursor-pointer" onClick={() => onNavigate('education-hub')}>
+                    <CardIcon className="w-5 h-5 text-teal-400 mb-2" />
+                    <p className="text-xs font-bold text-white mb-1">{card.label}</p>
+                    <p className="text-[10px] text-slate-400 leading-tight">{card.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

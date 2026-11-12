@@ -10,6 +10,9 @@ import { RegulatoryDocumentationPage } from './pages/RegulatoryDocumentationPage
 import { GlobalIntelligencePage } from './pages/GlobalIntelligencePage';
 import { LicensingGuidancePage } from './pages/LicensingGuidancePage';
 import { EducationTrainingPage } from './pages/EducationTrainingPage';
+import { EducationHubPage } from './pages/EducationHubPage';
+import { LearningCentrePage } from './pages/LearningCentrePage';
+import { MPharmStudyCornerPage } from './pages/MPharmStudyCornerPage';
 import { ConsultationRequestPage } from './pages/ConsultationRequestPage';
 import { ClientDashboard } from './pages/ClientDashboard';
 import { ProcessPage } from './pages/ProcessPage';
@@ -144,6 +147,30 @@ function ConsultancyApp() {
         {/* 8. Service F: Regulatory Education & Training */}
         {activePage === 'education' && (
           <EducationTrainingPage onOpenEnquiry={handleOpenEnquiry} />
+        )}
+
+        {/* 8b. Education Hub – Academic & Professional Learning Platform */}
+        {activePage === 'education-hub' && (
+          <EducationHubPage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+
+        {/* 8c. Learning Centre – 10 Topic-Wise Comprehensive Modules */}
+        {activePage === 'learning-centre' && (
+          <LearningCentrePage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+
+        {/* 8d. M.Pharm Regulatory Affairs Study Corner */}
+        {activePage === 'mpharm-study-corner' && (
+          <MPharmStudyCornerPage
+            onNavigate={handleNavigate}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
         )}
 
         {/* 9. Request a Consultation Page */}

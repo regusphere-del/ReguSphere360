@@ -11,6 +11,7 @@ import intelligenceRoutes from './routes/intelligenceRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import licenseRoutes from './routes/licenseRoutes.js';
+import mpharmRoutes from './routes/mpharmRoutes.js';
 
 dotenv.config();
 
@@ -62,6 +63,7 @@ app.use('/api/intelligence', intelligenceRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/licenses', licenseRoutes);
+app.use('/api/mpharm-resources', mpharmRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {

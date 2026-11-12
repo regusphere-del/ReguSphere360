@@ -135,8 +135,36 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('resources')} className="hover:text-teal-400 text-left transition-colors">
+                <button
+                  onClick={() => onNavigate('resources')}
+                  className="hover:text-teal-400 text-left transition-colors"
+                >
                   Regulatory Guidelines Library
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('education-hub')}
+                  className="hover:text-teal-400 text-left transition-colors text-teal-300 font-medium flex items-center gap-1.5"
+                >
+                  Education Hub
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('learning-centre')}
+                  className="hover:text-teal-400 text-left transition-colors text-teal-300 font-medium flex items-center gap-1.5"
+                >
+                  Learning Centre (10 Modules)
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('mpharm-study-corner')}
+                  className="hover:text-teal-400 text-left transition-colors text-indigo-300 font-medium flex items-center gap-1.5"
+                >
+                  M.Pharm RA Study Corner
+                  <span className="text-[9px] px-1 py-0.5 rounded bg-indigo-900/60 text-indigo-300 border border-indigo-700 font-bold">M.PHARM</span>
                 </button>
               </li>
               <li>
