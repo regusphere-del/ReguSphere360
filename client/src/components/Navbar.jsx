@@ -99,11 +99,8 @@ export const Navbar = ({
               className={`flex items-center space-x-1 text-xs xl:text-sm font-semibold transition-colors px-1 py-1 ${
                 [
                   'consultancy-services',
-                  'services-ectd',
                   'services-license-tracking',
                   'documentation',
-                  'intelligence',
-                  'services-licensing-guidance',
                   'education',
                   'education-hub',
                   'learning-centre',
@@ -139,28 +136,7 @@ export const Navbar = ({
                 </div>
 
                 <div className="space-y-1 mt-1 max-h-[420px] overflow-y-auto">
-                  {/* Service A: eCTD */}
-                  <button
-                    onClick={() => {
-                      onNavigate('services-ectd');
-                      setServicesDropdown(false);
-                    }}
-                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-start space-x-2.5 transition-colors group"
-                  >
-                    <div className="w-7 h-7 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-600 group-hover:text-white transition-colors">
-                      <FolderTree className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900 group-hover:text-teal-700">
-                        A. eCTD & Regulatory Submission
-                      </p>
-                      <p className="text-[10px] text-slate-500 leading-snug">
-                        Modules 1–5, XML backbone, DTD 3.2.2/4.0 & gateway validation
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* Service B: License Tracking */}
+                  {/* Service A: License Tracking */}
                   <button
                     onClick={() => {
                       onNavigate('services-license-tracking');
@@ -173,7 +149,7 @@ export const Navbar = ({
                     </div>
                     <div>
                       <p className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                        B. Pharmaceutical License Tracking
+                        A. Pharmaceutical License Tracking
                       </p>
                       <p className="text-[10px] text-slate-500 leading-snug">
                         Manufacturing, wholesale, loan, import & device status tracking
@@ -181,7 +157,7 @@ export const Navbar = ({
                     </div>
                   </button>
 
-                  {/* Service C: Documentation */}
+                  {/* Service B: Documentation */}
                   <button
                     onClick={() => {
                       onNavigate('documentation');
@@ -194,7 +170,7 @@ export const Navbar = ({
                     </div>
                     <div>
                       <p className="text-xs font-bold text-slate-900 group-hover:text-emerald-700">
-                        C. Regulatory Documentation Consultancy
+                        B. Regulatory Documentation Consultancy
                       </p>
                       <p className="text-[10px] text-slate-500 leading-snug">
                         SMF, BMR, MFR, GxP SOPs, CAPA, APQR & Variations
@@ -202,23 +178,23 @@ export const Navbar = ({
                     </div>
                   </button>
 
-                  {/* Service D: Intelligence */}
+                  {/* Service C: Education & Training */}
                   <button
                     onClick={() => {
-                      onNavigate('intelligence');
+                      onNavigate('education');
                       setServicesDropdown(false);
                     }}
                     className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-start space-x-2.5 transition-colors group"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                      <Globe2 className="w-3.5 h-3.5" />
+                    <div className="w-7 h-7 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-600 group-hover:text-white transition-colors">
+                      <GraduationCap className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-900 group-hover:text-indigo-700">
-                        D. Global Regulatory Intelligence
+                      <p className="text-xs font-bold text-slate-900 group-hover:text-rose-700">
+                        C. Regulatory Education & Training
                       </p>
                       <p className="text-[10px] text-slate-500 leading-snug">
-                        CDSCO, US FDA, EMA, MHRA, PMDA, TGA & WHO guidance
+                        Masterclasses, GxP workshops, quizzes & certifications
                       </p>
                     </div>
                   </button>
@@ -244,48 +220,6 @@ export const Navbar = ({
                       </p>
                       <p className="text-[10px] text-slate-500 leading-snug">
                         Automated live drug approvals, safety alerts, recalls & circulars
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* Service E: Licensing Guidance */}
-                  <button
-                    onClick={() => {
-                      onNavigate('services-licensing-guidance');
-                      setServicesDropdown(false);
-                    }}
-                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-start space-x-2.5 transition-colors group"
-                  >
-                    <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                      <Building2 className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900 group-hover:text-amber-700">
-                        E. Pharmaceutical Licensing Guidance
-                      </p>
-                      <p className="text-[10px] text-slate-500 leading-snug">
-                        Form 25/28, 20B/21B, Loan, Devices, Cosmetics & New Drugs
-                      </p>
-                    </div>
-                  </button>
-
-                  {/* Service F: Education & Training */}
-                  <button
-                    onClick={() => {
-                      onNavigate('education');
-                      setServicesDropdown(false);
-                    }}
-                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-start space-x-2.5 transition-colors group"
-                  >
-                    <div className="w-7 h-7 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-600 group-hover:text-white transition-colors">
-                      <GraduationCap className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900 group-hover:text-rose-700">
-                        F. Regulatory Education & Training
-                      </p>
-                      <p className="text-[10px] text-slate-500 leading-snug">
-                        Masterclasses, GxP workshops, quizzes & certifications
                       </p>
                     </div>
                   </button>
@@ -537,15 +471,6 @@ export const Navbar = ({
           </button>
           <button
             onClick={() => {
-              onNavigate('services-ectd');
-              setMobileMenuOpen(false);
-            }}
-            className="w-full text-left py-2 font-semibold text-slate-700 border-b border-slate-100 pl-2"
-          >
-            • eCTD & Regulatory Submission Consultancy
-          </button>
-          <button
-            onClick={() => {
               onNavigate('services-license-tracking');
               setMobileMenuOpen(false);
             }}
@@ -561,24 +486,6 @@ export const Navbar = ({
             className="w-full text-left py-2 font-semibold text-slate-700 border-b border-slate-100 pl-2"
           >
             • Regulatory Documentation Consultancy
-          </button>
-          <button
-            onClick={() => {
-              onNavigate('intelligence');
-              setMobileMenuOpen(false);
-            }}
-            className="w-full text-left py-2 font-semibold text-slate-700 border-b border-slate-100 pl-2"
-          >
-            • Global Regulatory Intelligence
-          </button>
-          <button
-            onClick={() => {
-              onNavigate('services-licensing-guidance');
-              setMobileMenuOpen(false);
-            }}
-            className="w-full text-left py-2 font-semibold text-slate-700 border-b border-slate-100 pl-2"
-          >
-            • Pharmaceutical Licensing Guidance
           </button>
           <button
             onClick={() => {

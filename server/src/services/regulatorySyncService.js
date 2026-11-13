@@ -652,3 +652,4 @@ export const regulatorySyncService = {
     }, syncState.refreshIntervalMinutes * 60 * 1000);
   },
 };
+

@@ -563,11 +563,8 @@ export const AdminDashboard = () => {
                   className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 font-medium text-slate-800 focus:outline-none focus:border-teal-500"
                 >
                   <option value="All">All Practices</option>
-                  <option value="eCTD">eCTD Consultancy</option>
                   <option value="License Tracking">License Tracking</option>
                   <option value="Regulatory Documentation">Regulatory Documentation</option>
-                  <option value="Licensing Guidance">Licensing Guidance</option>
-                  <option value="Global Regulatory Intelligence">Regulatory Intelligence</option>
                   <option value="Regulatory Education">Education & Training</option>
                 </select>
               </div>

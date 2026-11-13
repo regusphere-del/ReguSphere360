@@ -110,3 +110,4 @@ const regulatoryUpdateSchema = new mongoose.Schema(
 export const RegulatoryUpdate =
   mongoose.models.RegulatoryUpdate ||
   mongoose.model('RegulatoryUpdate', regulatoryUpdateSchema);
+

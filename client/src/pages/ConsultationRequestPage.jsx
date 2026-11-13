@@ -23,11 +23,8 @@ import {
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const servicesOptions = [
-  'eCTD Consultancy',
   'Regulatory Documentation',
   'License Tracking',
-  'Pharmaceutical Licensing Guidance',
-  'Global Regulatory Intelligence',
   'Regulatory Education & Training',
   'Other Regulatory Support',
 ];

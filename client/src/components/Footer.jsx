@@ -39,18 +39,10 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
             <ul className="space-y-2 text-xs">
               <li>
                 <button
-                  onClick={() => onNavigate('services-ectd')}
-                  className="hover:text-teal-400 text-left transition-colors"
-                >
-                  A. eCTD & Regulatory Submission
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => onNavigate('services-license-tracking')}
                   className="hover:text-teal-400 text-left transition-colors"
                 >
-                  B. Pharmaceutical License Tracking
+                  A. Pharmaceutical License Tracking
                 </button>
               </li>
               <li>
@@ -58,23 +50,7 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                   onClick={() => onNavigate('documentation')}
                   className="hover:text-teal-400 text-left transition-colors"
                 >
-                  C. Regulatory Documentation
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('intelligence')}
-                  className="hover:text-teal-400 text-left transition-colors"
-                >
-                  D. Global Regulatory Intelligence
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('services-licensing-guidance')}
-                  className="hover:text-teal-400 text-left transition-colors"
-                >
-                  E. Pharmaceutical Licensing Guidance
+                  B. Regulatory Documentation
                 </button>
               </li>
               <li>
@@ -82,7 +58,7 @@ export const Footer = ({ onNavigate, onOpenEnquiry, onOpenReadiness, onOpenTrack
                   onClick={() => onNavigate('education')}
                   className="hover:text-teal-400 text-left transition-colors"
                 >
-                  F. Regulatory Education & Training
+                  C. Regulatory Education & Training
                 </button>
               </li>
               <li>

@@ -50,7 +50,7 @@ export const ClientDashboard = ({ onNavigate, onOpenEnquiry }) => {
       clientName: 'Dr. Sarah Jenkins',
       email: 'sarah.jenkins@biocrest-therapeutics.com',
       company: 'BioCrest Therapeutics Inc.',
-      serviceRequired: 'eCTD & Regulatory Submission Consultancy',
+      serviceRequired: 'Regulatory Documentation Consultancy',
       projectStatus: 'Gap Assessment In Progress',
       createdAt: '2026-10-28T10:00:00.000Z',
       description: 'Initial IND / CTA filing for novel bispecific antibody. Comprehensive Module 3 CMC gap review and eCTD structure indexing before pre-IND meeting.',

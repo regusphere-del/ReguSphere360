@@ -99,22 +99,17 @@ function ConsultancyApp() {
         )}
 
         {/* 2. Our Consultancy Services Hub */}
-        {activePage === 'consultancy-services' && (
+        {(activePage === 'consultancy-services' ||
+          activePage === 'services-ectd' ||
+          activePage === 'intelligence' ||
+          activePage === 'services-licensing-guidance') && (
           <ConsultancyServicesPage
             onNavigate={handleNavigate}
             onOpenEnquiry={handleOpenEnquiry}
           />
         )}
 
-        {/* 3. Service A: eCTD & Regulatory Submission Consultancy */}
-        {activePage === 'services-ectd' && (
-          <EctdConsultancyPage
-            onNavigate={handleNavigate}
-            onOpenEnquiry={handleOpenEnquiry}
-          />
-        )}
-
-        {/* 4. Service B: Pharmaceutical License Tracking */}
+        {/* 3. Pharmaceutical License Tracking */}
         {activePage === 'services-license-tracking' && (
           <LicenseTrackingPage
             onNavigate={handleNavigate}
@@ -123,7 +118,7 @@ function ConsultancyApp() {
           />
         )}
 
-        {/* 5. Service C: Regulatory Documentation Consultancy */}
+        {/* 4. Regulatory Documentation Consultancy */}
         {activePage === 'documentation' && (
           <RegulatoryDocumentationPage
             onSelectService={handleOpenEnquiry}
@@ -132,20 +127,7 @@ function ConsultancyApp() {
           />
         )}
 
-        {/* 6. Service D: Global Regulatory Intelligence */}
-        {activePage === 'intelligence' && (
-          <GlobalIntelligencePage onOpenEnquiry={handleOpenEnquiry} />
-        )}
-
-        {/* 7. Service E: Pharmaceutical Licensing Guidance */}
-        {activePage === 'services-licensing-guidance' && (
-          <LicensingGuidancePage
-            onNavigate={handleNavigate}
-            onOpenEnquiry={handleOpenEnquiry}
-          />
-        )}
-
-        {/* 8. Service F: Regulatory Education & Training */}
+        {/* 5. Regulatory Education & Training */}
         {activePage === 'education' && (
           <EducationTrainingPage onOpenEnquiry={handleOpenEnquiry} />
         )}

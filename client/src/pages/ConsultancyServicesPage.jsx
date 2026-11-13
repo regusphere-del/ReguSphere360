@@ -22,28 +22,9 @@ export const ConsultancyServicesPage = ({ onNavigate, onOpenEnquiry }) => {
 
   const mainServices = [
     {
-      id: 'ectd',
-      category: 'Submissions',
-      title: 'A. eCTD & Regulatory Submission Consultancy',
-      tagline: 'ICH CTD Modules 1–5, XML Backbone, Sequence Lifecycle & Validation',
-      icon: FolderTree,
-      color: 'teal',
-      path: 'services-ectd',
-      description:
-        'Professional guidance on electronic submissions (eCTD v3.2.2 & v4.0), sequence planning (0000 to nnnn), regional Module 1 specs, and technical gateway checks to eliminate Refuse-to-File (RTF) risks.',
-      highlights: [
-        'CTD Modules 1 to 5 granular taxonomy & document indexing',
-        'eCTD lifecycle sequence planning & cumulative leaf management',
-        'PDF/A formatting, bookmarks, fast web view & relative hyperlinking',
-        'Gateway technical validation (US FDA ESG, EMA CESP, CDSCO)',
-      ],
-      deliverables: 'eCTD Folder Taxonomy, Granular TOC Matrix, Lorenz Validation Logs',
-      targetClients: 'Sponsors filing IND, NDA, ANDA, BLA, or MAA dossiers globally',
-    },
-    {
       id: 'license-tracking',
       category: 'Licensing & Approvals',
-      title: 'B. Pharmaceutical License Tracking & Regulatory Follow-up',
+      title: 'A. Pharmaceutical License Tracking & Regulatory Follow-up',
       tagline: 'Real-Time Monitoring of Manufacturing, Wholesale, Import & Device Licenses',
       icon: Activity,
       color: 'blue',
@@ -62,7 +43,7 @@ export const ConsultancyServicesPage = ({ onNavigate, onOpenEnquiry }) => {
     {
       id: 'documentation',
       category: 'Documentation',
-      title: 'C. Regulatory Documentation Consultancy',
+      title: 'B. Regulatory Documentation Consultancy',
       tagline: 'SOPs, SMF, BMR, MFR, QMS, CAPA, APQR & Regulatory Variations',
       icon: FileCheck2,
       color: 'emerald',
@@ -70,7 +51,7 @@ export const ConsultancyServicesPage = ({ onNavigate, onOpenEnquiry }) => {
       description:
         'Comprehensive technical writing, auditing, and review for pharmaceutical documentation spanning Site Master Files (SMF), Master Formula Records (MFR), Batch Records, and Quality Systems.',
       highlights: [
-        'CTD & eCTD documentation review & scientific writing',
+        'CTD documentation review & scientific writing',
         'Site Master File (SMF), BMR, and MFR harmonization',
         'GxP SOP master templates, 21 CFR Part 11 document governance',
         'Change controls, Deviation, CAPA, and APQR audit documentation',
@@ -79,55 +60,17 @@ export const ConsultancyServicesPage = ({ onNavigate, onOpenEnquiry }) => {
       targetClients: 'Operating pharmaceutical plants, QA/QC departments, scale-up biotechs',
     },
     {
-      id: 'intelligence',
-      category: 'Intelligence',
-      title: 'D. Global Regulatory Intelligence & Guidance',
-      tagline: 'Regulatory Pathways Across India, USA, Europe, UK, Japan, Australia & WHO',
-      icon: Globe2,
-      color: 'indigo',
-      path: 'intelligence',
-      description:
-        'Synthesizing verified notifications, health authority guidelines, and comparative regulatory pathways across CDSCO, US FDA, EMA, MHRA, PMDA, TGA, Health Canada, WHO, and ICH.',
-      highlights: [
-        'Country-specific approval requirements & drug registration procedures',
-        'Comparative regulatory pathways (IND vs CTA, ANDA vs MAA, 505(b)(2))',
-        'Regulatory intelligence notifications & guideline change impact briefs',
-        'Post-approval variation classification & health authority filing roadmaps',
-      ],
-      deliverables: 'Jurisdiction Comparison Matrix, Regulatory Strategy Briefs',
-      targetClients: 'Global regulatory affairs directors, strategy teams, emerging exporters',
-    },
-    {
-      id: 'licensing-guidance',
-      category: 'Licensing & Approvals',
-      title: 'E. Pharmaceutical Licensing & Approval Guidance',
-      tagline: 'Step-by-Step Procedural Guidance for Manufacturing, Sales & Approvals',
-      icon: Building2,
-      color: 'amber',
-      path: 'services-licensing-guidance',
-      description:
-        'Educational and procedural guidance on obtaining manufacturing licenses (Form 25/28), wholesale authorizations (20B/21B), loan licenses, import certificates, and medical device registrations.',
-      highlights: [
-        'Drug manufacturing plant layout, HVAC qualification & staff credentials',
-        'Wholesale & retail sales license requirements & registered pharmacist norms',
-        'Medical Device Rules 2017 Class A–D registration & Notified Body audits',
-        'New drug approval pathways (Form 44, SEC review) & CT applications',
-      ],
-      deliverables: 'Pre-filing Inspection Checklists, Application Roadmap, Statutory Challan Guides',
-      targetClients: 'Startups setting up pharma units, traders, medical device innovators',
-    },
-    {
       id: 'education',
       category: 'Education & Training',
-      title: 'F. Regulatory Education & Corporate Training',
+      title: 'C. Regulatory Education & Corporate Training',
       tagline: 'Industry-Oriented Masterclasses, GxP Workshops & Professional Upskilling',
       icon: GraduationCap,
       color: 'rose',
       path: 'education',
       description:
-        'Professional training programs designed for pharmacy students, regulatory freshers, and corporate pharmaceutical teams covering CTD compilation, CDSCO regulations, GxP, and eCTD software tools.',
+        'Professional training programs designed for pharmacy students, regulatory freshers, and corporate pharmaceutical teams covering CTD compilation, CDSCO regulations, GxP, and regulatory software tools.',
       highlights: [
-        'Hands-on CTD/eCTD dossier compilation workshops with real-world case studies',
+        'Hands-on CTD dossier compilation workshops with real-world case studies',
         'In-depth training on CDSCO SUGAM, FDA 21 CFR, and EMA directives',
         'GxP (GMP, GDP, GLP, GCP) compliance and data integrity masterclasses',
         'Corporate customized on-site modules, quizzes & Certificates of Completion',
@@ -208,7 +151,7 @@ export const ConsultancyServicesPage = ({ onNavigate, onOpenEnquiry }) => {
             </div>
 
             <div className="flex items-center space-x-1.5 bg-white p-1 rounded-xl border border-slate-200 text-xs shadow-sm">
-              {['All', 'Submissions', 'Licensing & Approvals', 'Documentation', 'Intelligence', 'Education & Training'].map(
+              {['All', 'Licensing & Approvals', 'Documentation', 'Education & Training'].map(
                 (d) => (
                   <button
                     key={d}

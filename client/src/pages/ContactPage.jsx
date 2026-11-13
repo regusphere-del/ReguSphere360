@@ -201,9 +201,8 @@ export const ContactPage = () => {
                         className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:border-teal-600"
                       >
                         <option value="Regulatory Documentation Scoping">Regulatory Documentation Scoping</option>
-                        <option value="ICH CTD/eCTD Publishing Support">ICH CTD/eCTD Publishing Support</option>
+                        <option value="License Tracking & Follow-up">License Tracking & Follow-up</option>
                         <option value="Pre-submission Gap Assessment">Pre-submission Gap Assessment</option>
-                        <option value="Global Regulatory Intelligence Brief">Global Regulatory Intelligence Brief</option>
                         <option value="Corporate Training Programme">Corporate Training Programme</option>
                         <option value="General Consultation">General Consultation</option>
                       </select>

@@ -48,12 +48,10 @@ app.get('/api/health', (req, res) => {
     version: '2.0.0',
     timestamp: new Date().toISOString(),
     coreServices: [
-      '1. eCTD & Regulatory Submission Consultancy',
-      '2. Pharmaceutical License Tracking & Regulatory Follow-up',
-      '3. Regulatory Documentation Consultancy',
-      '4. Global Regulatory Intelligence & Guidance',
-      '5. Pharmaceutical Licensing & Approval Guidance',
-      '6. Regulatory Education & Corporate Training',
+      '1. Pharmaceutical License Tracking & Regulatory Follow-up',
+      '2. Regulatory Documentation Consultancy',
+      '3. Regulatory Education & Corporate Training',
+      '4. CDSCO & USFDA Live Regulatory Updates',
     ],
   });
 });

@@ -105,8 +105,7 @@ export const HomePage = ({
               {/* Exact User Supporting Text */}
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-2xl">
                 Navigate complex pharmaceutical regulatory requirements with confidence. ReguSphere 360 provides
-                regulatory guidance, eCTD knowledge support, documentation consultancy, pharmaceutical license
-                tracking, and global regulatory intelligence.
+                expert documentation consultancy, pharmaceutical license tracking, and professional regulatory education.
               </p>
 
               {/* Two Prominent Action Buttons */}
@@ -248,7 +247,7 @@ export const HomePage = ({
               <span>Core Consultancy Verticals</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Six Comprehensive Regulatory Practices
+              Core Regulatory Consultancy Practices
             </h2>
             <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
               Tailored solutions designed for pharmaceutical sponsors, generic manufacturers, biotech innovators,
@@ -257,63 +256,14 @@ export const HomePage = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* 1. eCTD & Regulatory Submission Consultancy */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:border-teal-500 hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-4">
-                  <FolderTree className="w-6 h-6 stroke-[2.2]" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-teal-700 block mb-1">
-                  Practice Category A
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  eCTD & Regulatory Submission Consultancy
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  Professional guidance on Electronic Common Technical Document (eCTD) specifications, Modules 1–5
-                  dossier organization, lifecycle sequences (0000 to nnnn), and technical gateway validation.
-                </p>
-                <div className="space-y-1.5 mb-6 text-xs text-slate-700 border-t border-slate-100 pt-3">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
-                    <span>CTD Modules 1 to 5 granular taxonomy</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
-                    <span>XML backbone & DTD 3.2.2 / v4.0 specs</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
-                    <span>US FDA ESG, EMA CESP, CDSCO SUGAM</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2 pt-2 border-t border-slate-100">
-                <button
-                  onClick={() => onNavigate('services-ectd')}
-                  className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors flex items-center justify-center space-x-1"
-                >
-                  <span>Explore eCTD Service</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => onOpenEnquiry('eCTD Consultancy')}
-                  className="w-full py-2 px-4 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold text-xs transition-colors"
-                >
-                  Request Consultation
-                </button>
-              </div>
-            </div>
-
-            {/* 2. Pharmaceutical License Tracking */}
+            {/* 1. Pharmaceutical License Tracking */}
             <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center mb-4">
                   <Activity className="w-6 h-6 stroke-[2.2]" />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 block mb-1">
-                  Practice Category B
+                  Practice Category A
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
                   Pharmaceutical License Tracking & Follow-up
@@ -355,14 +305,14 @@ export const HomePage = ({
               </div>
             </div>
 
-            {/* 3. Regulatory Documentation Consultancy */}
+            {/* 2. Regulatory Documentation Consultancy */}
             <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
                   <FileCheck2 className="w-6 h-6 stroke-[2.2]" />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 block mb-1">
-                  Practice Category C
+                  Practice Category B
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
                   Regulatory Documentation Consultancy
@@ -404,124 +354,26 @@ export const HomePage = ({
               </div>
             </div>
 
-            {/* 4. Global Regulatory Intelligence */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center mb-4">
-                  <Globe2 className="w-6 h-6 stroke-[2.2]" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 block mb-1">
-                  Practice Category D
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  Global Regulatory Intelligence & Guidance
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  Multi-jurisdictional intelligence across India (CDSCO), United States (FDA), Europe (EMA),
-                  UK (MHRA), Japan (PMDA), Australia (TGA), Canada, WHO, and ICH guidelines with verified updates.
-                </p>
-                <div className="space-y-1.5 mb-6 text-xs text-slate-700 border-t border-slate-100 pt-3">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600" />
-                    <span>Comparative regulatory pathway roadmaps</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600" />
-                    <span>Continuous health authority guideline monitoring</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600" />
-                    <span>Post-approval change classification guidance</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2 pt-2 border-t border-slate-100">
-                <button
-                  onClick={() => onNavigate('intelligence')}
-                  className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors flex items-center justify-center space-x-1"
-                >
-                  <span>Explore Intelligence</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => onOpenEnquiry('Global Regulatory Intelligence')}
-                  className="w-full py-2 px-4 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 font-bold text-xs transition-colors"
-                >
-                  Request Intelligence Brief
-                </button>
-              </div>
-            </div>
-
-            {/* 5. Pharmaceutical Licensing Guidance */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:border-amber-500 hover:shadow-md transition-all flex flex-col justify-between">
-              <div>
-                <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-4">
-                  <Building2 className="w-6 h-6 stroke-[2.2]" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 block mb-1">
-                  Practice Category E
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  Pharmaceutical Licensing & Approval Guidance
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  Comprehensive educational guidance on obtaining drug manufacturing licenses (Form 25/28), wholesale
-                  (20B/21B), loan licenses, import certificates, medical device registrations, and new drug approvals.
-                </p>
-                <div className="space-y-1.5 mb-6 text-xs text-slate-700 border-t border-slate-100 pt-3">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Manufacturing layout & HVAC compliance checks</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Medical Device Rules 2017 Class A–D pathways</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-600" />
-                    <span>Step-by-step statutory document checklists</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2 pt-2 border-t border-slate-100">
-                <button
-                  onClick={() => onNavigate('services-licensing-guidance')}
-                  className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors flex items-center justify-center space-x-1"
-                >
-                  <span>Explore Licensing Guidance</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => onOpenEnquiry('Pharmaceutical Licensing Guidance')}
-                  className="w-full py-2 px-4 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-bold text-xs transition-colors"
-                >
-                  Request Licensing Roadmap
-                </button>
-              </div>
-            </div>
-
-            {/* 6. Regulatory Education & Corporate Training */}
+            {/* 3. Regulatory Education & Corporate Training */}
             <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:border-rose-500 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center mb-4">
                   <GraduationCap className="w-6 h-6 stroke-[2.2]" />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-rose-700 block mb-1">
-                  Practice Category F
+                  Practice Category C
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">
                   Regulatory Education & Corporate Training
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
                   Professional development training for students, fresh regulatory executives, and corporate pharma
-                  teams. Real-world eCTD publishing labs, GxP masterclasses, and certified quizzes.
+                  teams. Real-world dossier compilation labs, GxP masterclasses, and certified quizzes.
                 </p>
                 <div className="space-y-1.5 mb-6 text-xs text-slate-700 border-t border-slate-100 pt-3">
                   <div className="flex items-center space-x-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-rose-600" />
-                    <span>CTD/eCTD dossier preparation masterclasses</span>
+                    <span>CTD dossier preparation masterclasses</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-rose-600" />

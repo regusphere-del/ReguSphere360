@@ -952,3 +952,4 @@ export const LiveRegulatoryUpdatesPage = ({ onNavigate, onOpenEnquiry }) => {
     </div>
   );
 };
+
