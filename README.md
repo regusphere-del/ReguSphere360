@@ -13,9 +13,12 @@ ReguSphere 360 is an enterprise-grade web platform for pharmaceutical companies,
 > ---
 > 
 > ### 💻 Local Development Links (Active when laptop dev server is running)
-> - **Localhost (PC only):** [http://localhost:5173/](http://localhost:5173/)
-> - **Local Wi-Fi Network (Phone on same Wi-Fi):** [http://192.168.1.73:5173/](http://192.168.1.73:5173/)
-> - **Backend API Health Check:** [http://localhost:5000/api/health](http://localhost:5000/api/health)
+> - **Frontend Application (Complete Website):**  
+>   👉 **[http://localhost:5173/](http://localhost:5173/)**
+> - **Local Wi-Fi Network Access (Mobile / Tablet on same Wi-Fi):**  
+>   👉 **[http://192.168.1.68:5173/](http://192.168.1.68:5173/)**
+> - **Backend API & Health Check:**  
+>   👉 **[http://localhost:5000/api/health](http://localhost:5000/api/health)**
 >
 > *(Note: The previous `trycloudflare.com` link was a temporary local tunnel running from your laptop. When your laptop went to sleep or shut down, that local process closed. The new GitHub Pages and Vercel cloud deployments run on external high-availability cloud servers 24 hours a day, 7 days a week, 365 days a year—independent of your laptop.)*
 
