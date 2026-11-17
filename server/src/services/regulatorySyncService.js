@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { RegulatoryUpdate } from '../models/RegulatoryUpdate.js';
 
 // In-memory dual-resilience cache
@@ -369,10 +368,11 @@ export const regulatorySyncService = {
     // 1. Sync USFDA Drug Enforcement (Recalls) via openFDA API
     try {
       syncResult.sourcesContacted++;
-      const fdaEnforcementRes = await axios.get(
+      const fdaEnforcementFetch = await fetch(
         'https://api.fda.gov/drug/enforcement.json?sort=report_date:desc&limit=5',
-        { timeout: 8000 }
+        { signal: AbortSignal.timeout(8000) }
       );
+      const fdaEnforcementData = fdaEnforcementFetch.ok ? await fdaEnforcementFetch.json() : null;
 
       const fdaSource = syncState.sources.find((s) => s.id === 'openfda-enforcement');
       if (fdaSource) {
@@ -380,8 +380,8 @@ export const regulatorySyncService = {
         fdaSource.status = 'Healthy';
       }
 
-      if (fdaEnforcementRes.data?.results) {
-        for (const item of fdaEnforcementRes.data.results) {
+      if (fdaEnforcementData?.results) {
+        for (const item of fdaEnforcementData.results) {
           const recordId = item.recall_number || item.id;
           if (!recordId) continue;
 
@@ -465,10 +465,11 @@ export const regulatorySyncService = {
     // 2. Sync USFDA Drug Approvals via openFDA Drugs@FDA API
     try {
       syncResult.sourcesContacted++;
-      const fdaApprovalsRes = await axios.get(
+      const fdaApprovalsFetch = await fetch(
         'https://api.fda.gov/drug/drugsfda.json?sort=submissions.submission_status_date:desc&limit=5',
-        { timeout: 8000 }
+        { signal: AbortSignal.timeout(8000) }
       );
+      const fdaApprovalsData = fdaApprovalsFetch.ok ? await fdaApprovalsFetch.json() : null;
 
       const fdaAppSource = syncState.sources.find((s) => s.id === 'openfda-approvals');
       if (fdaAppSource) {
@@ -476,8 +477,8 @@ export const regulatorySyncService = {
         fdaAppSource.status = 'Healthy';
       }
 
-      if (fdaApprovalsRes.data?.results) {
-        for (const drug of fdaApprovalsRes.data.results) {
+      if (fdaApprovalsData?.results) {
+        for (const drug of fdaApprovalsData.results) {
           const appNum = drug.application_number;
           const sub = drug.submissions?.[0];
           const recordId = `${appNum}-${sub?.submission_number || '001'}`;
